@@ -1,0 +1,53 @@
+# ---> C++
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Build folders
+.vscode
+build
+x64
+CMakeLists.txt
+!docker/CMakeLists.txt
+!jenkins/CMakeLists.txt
+!jenkins/test/CMakeLists.txt
+
+# Config file
+/config.json
+/.env
+/.env.docker
+
+# Model generator file
+/model.json
+
+# Docker file
+/docker/resources
