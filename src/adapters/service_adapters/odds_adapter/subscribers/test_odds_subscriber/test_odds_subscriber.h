@@ -20,7 +20,7 @@
 #pragma once
 #include <string>
 #include "../abstract_odds_subscriber/abstract_odds_subscriber.h"
-#include "../../../../../models/odds_models/test_model/TestDataTypeSupportImpl.h"
+#include "../../../../../../build/opendds_generated/TestDataTypeSupportImpl.h"
 
 class TestODDSSubscriber : public AbstractODDSSubscriber
 {

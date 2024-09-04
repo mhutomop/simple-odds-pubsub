@@ -61,9 +61,13 @@ void TestODDSSubscriber::start() {
         {
             this->sync_threads();
 
+            std::string type = "[no_data]";
+            if (this->msg_list_[i]._type.has_value())
+                type = std::to_string(this->msg_list_[i]._type.value());
+
             LOG_DEBUG("ODDS Subscriber", "[Test] Message received \n \
-                \"" + std::string(this->msg_list_[i].command) + "\" \n \
-                " + std::to_string(this->msg_list_[i].type)
+                command : \"" + std::string(this->msg_list_[i]._command) + "\" \n \
+                type : " + type
             );
             
             this->message_ = this->msg_list_[i];

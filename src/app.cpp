@@ -34,7 +34,8 @@ int main(int argc, char** argv) {
 
         while(true) {
             TestData::Message test_msg;
-            test_msg.command = "GREEN";
+            test_msg.command("GREEN");
+            test_msg.type(2);
             test_odds_publisher->set_test_msg_(test_msg);
             test_odds_publisher->publish_message();
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));

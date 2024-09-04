@@ -1,0 +1,42 @@
+cmake_minimum_required(VERSION 3.21.0)
+project(simple-odds-pubsub VERSION 1.0.0 LANGUAGES C CXX)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_STANDARD 20)
+
+include(CTest)
+enable_testing()
+
+include_directories(
+    "/home/mhutomop/vcpkg/installed/x64-linux/include"
+    "/home/mhutomop/OpenDDS-3.29.1"
+    "/home/mhutomop/OpenDDS-3.29.1/ACE_wrappers"
+    "/home/mhutomop/OpenDDS-3.29.1/ACE_wrappers/TAO"
+)
+link_directories(
+    "/home/mhutomop/vcpkg/installed/x64-linux/lib" 
+    "/home/mhutomop/OpenDDS-3.29.1/lib"
+    "/home/mhutomop/OpenDDS-3.29.1/ACE_wrappers/lib"
+)
+
+find_package(OpenDDS REQUIRED)
+add_library(messenger_idl)
+opendds_target_sources(messenger_idl PUBLIC "idl/TestData/TestData.idl" OPENDDS_IDL_OPTIONS -Lc++11)
+target_link_libraries(messenger_idl PUBLIC OpenDDS::Dcps)
+
+file(GLOB_RECURSE SOURCES src/*.cpp src/*.cc src/*.h src/*.hpp)
+list(REMOVE_ITEM SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/app.cpp)
+add_library(shared-objects OBJECT ${SOURCES})
+
+add_executable(${PROJECT_NAME} ${CMAKE_CURRENT_SOURCE_DIR}/src/app.cpp $<TARGET_OBJECTS:shared-objects>)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE messenger_idl)
+# target_link_libraries(${PROJECT_NAME} PRIVATE OpenDDS_Dcps TAO_Valuetype TAO ACE)
+find_package(Boost REQUIRED COMPONENTS thread)
+target_link_libraries(${PROJECT_NAME} PRIVATE Boost::boost Boost::thread)
+find_package(spdlog CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE spdlog::spdlog)
+
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)

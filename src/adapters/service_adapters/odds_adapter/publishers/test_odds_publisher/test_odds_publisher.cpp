@@ -56,9 +56,12 @@ void TestODDSPublisher::set_test_msg_(const TestData::Message &test_msg) {
 }
 
 void TestODDSPublisher::publish_message() {
+    std::string type = "[no_data]";
+    if (this->test_msg_._type.has_value())
+        type = std::to_string(this->test_msg_._type.value());
     LOG_DEBUG("ODDS Publisher", "[Test] Writing a message containing : \n \
-        command : \"" + std::string(this->test_msg_.command) + "\" \n \
-        type : " + std::to_string(this->test_msg_.type)
+        command : \"" + std::string(this->test_msg_._command) + "\" \n \
+        type : " + type
     );
 
     DDS::ReturnCode_t result;
