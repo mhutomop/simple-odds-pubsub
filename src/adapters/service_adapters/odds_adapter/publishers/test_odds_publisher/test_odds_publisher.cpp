@@ -28,37 +28,37 @@ TestODDSPublisher::TestODDSPublisher(const DDS::DomainParticipant_var &participa
     DDS::DataWriter_var               writer;
 
     /* The Application Test Data type_support */
-    TestData::MessageTypeSupport_var type_support;
+    HelloWorldData::MsgTypeSupport_var type_support;
 
     DDS::ReturnCode_t result;
     CORBA::String_var type_name;
 
-    TestData::MessageSeq msg_list;
+    HelloWorldData::MsgSeq msg_list;
    
     // Register the application data type
-    type_support = new TestData::MessageTypeSupportImpl();
+    type_support = new HelloWorldData::MsgTypeSupportImpl();
     /* Get the IDL type name and use this to register the type. */
     type_name = type_support->get_type_name();
     result = type_support->register_type(participant_, type_name);
     this->odds_operator_.check_status(result, "register_type() failed");
 
-    set_topic(type_name, std::getenv("TEST_TOPIC"), writer);
+    set_topic(type_name, std::getenv("TEST_PUB_TOPIC"), writer);
 
-    /* Cast writer to 'TestData' type specific interface. */
-    test_writer_ = TestData::MessageDataWriter::_narrow(writer);
-    this->odds_operator_.check_handle(test_writer_, "TestDataWriter::_narrow() failed");
+    /* Cast writer to 'HelloWorldData' type specific interface. */
+    test_writer_ = HelloWorldData::MsgDataWriter::_narrow(writer);
+    this->odds_operator_.check_handle(test_writer_, "HelloWorldDataWriter::_narrow() failed");
 
-    LOG_INFO("ODDS Publisher", "[Test] Ready ...");
+    LOG_INFO("ODDS Publisher", "[Hello World] Ready ...");
 }
 
-void TestODDSPublisher::set_test_msg_(const TestData::Message &test_msg) {
+void TestODDSPublisher::set_test_msg_(const HelloWorldData::Msg &test_msg) {
     this->test_msg_ = test_msg;
 }
 
 void TestODDSPublisher::publish_message() {
-    LOG_DEBUG("ODDS Publisher", "[Test] Writing a message containing : \n \
-        command : \"" + std::string(this->test_msg_.command) + "\" \n \
-        type : " + std::to_string(this->test_msg_.type)
+    LOG_DEBUG("ODDS Publisher", "[Hello World] Writing a message containing : \n \
+        user_id : " + std::to_string(this->test_msg_.user_id) + "\n \
+        message : \"" + std::string(this->test_msg_.message)
     );
 
     DDS::ReturnCode_t result;

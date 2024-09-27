@@ -25,8 +25,8 @@
 // TAO_IDL - Generated from
 // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_codegen.cpp:454
 
-#ifndef _TAO_IDL_TESTDATATYPESUPPORTS_UI69LU_H_
-#define _TAO_IDL_TESTDATATYPESUPPORTS_UI69LU_H_
+#ifndef _TAO_IDL_TESTDATATYPESUPPORTS_RKRJZQ_H_
+#define _TAO_IDL_TESTDATATYPESUPPORTS_RKRJZQ_H_
 
 
 #include "TestDataTypeSupportC.h"
@@ -65,7 +65,7 @@ TAO_END_VERSIONED_NAMESPACE_DECL
 // TAO_IDL - Generated from
 // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_module/module_sh.cpp:34
 
-namespace POA_TestData
+namespace POA_HelloWorldData
 {
   
 
@@ -73,7 +73,7 @@ namespace POA_TestData
 // TAO_IDL - Generated from
 // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_module/module_sh.cpp:65
 
-} // module TestData
+} // module HelloWorldData
 
 #endif /* ifndef */
 

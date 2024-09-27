@@ -31,10 +31,10 @@ public:
     * Method to set test_msg_
     * @param test_msg shape type message to be set
     */
-    void set_test_msg_(const TestData::Message &test_msg);
+    void set_test_msg_(const HelloWorldData::Msg &test_msg);
 
     void publish_message() override;
 private:
-    TestData::MessageDataWriter_var test_writer_;
-    TestData::Message test_msg_;
+    HelloWorldData::MsgDataWriter_var test_writer_;
+    HelloWorldData::Msg test_msg_;
 };

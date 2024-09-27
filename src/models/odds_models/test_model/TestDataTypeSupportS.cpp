@@ -25,8 +25,8 @@
 // TAO_IDL - Generated from
 // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_codegen.cpp:631
 
-#ifndef _TAO_IDL_TESTDATATYPESUPPORTS_QYN6IG_CPP_
-#define _TAO_IDL_TESTDATATYPESUPPORTS_QYN6IG_CPP_
+#ifndef _TAO_IDL_TESTDATATYPESUPPORTS_0IBXJE_CPP_
+#define _TAO_IDL_TESTDATATYPESUPPORTS_0IBXJE_CPP_
 
 
 #include "TestDataTypeSupportS.h"

@@ -25,8 +25,8 @@
 // TAO_IDL - Generated from
 // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_codegen.cpp:148
 
-#ifndef _TAO_IDL_TESTDATAC_O4RBMT_H_
-#define _TAO_IDL_TESTDATAC_O4RBMT_H_
+#ifndef _TAO_IDL_TESTDATAC_WUJ2E4_H_
+#define _TAO_IDL_TESTDATAC_WUJ2E4_H_
 
 
 #include /**/ <ace/config-all.h>
@@ -65,16 +65,16 @@ TAO_END_VERSIONED_NAMESPACE_DECL
 // TAO_IDL - Generated from
 // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_module/module_ch.cpp:34
 
-namespace TestData
+namespace HelloWorldData
 {
   // TAO_IDL - Generated from
   // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_type.cpp:257
 
   
 
-  struct Message;
-  using Message_var = ::TAO_Var_Var_T<Message>;
-  using Message_out = ::TAO_Out_T<Message>;
+  struct Msg;
+  using Msg_var = ::TAO_Var_Var_T<Msg>;
+  using Msg_out = ::TAO_Out_T<Msg>;
 
   
   // TAO_IDL - Generated from
@@ -82,17 +82,17 @@ namespace TestData
 
   
 
-  struct  Message
+  struct  Msg
   {
     // TAO_IDL - Generated from
     // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_type.cpp:296
 
     
-    using _var_type = Message_var;
-    using _out_type = Message_out;
+    using _var_type = Msg_var;
+    using _out_type = Msg_out;
     
-    ::TAO::String_Manager command;
-    ::CORBA::UShort type;
+    ::CORBA::Short user_id;
+    ::TAO::String_Manager message;
   };
 
 
@@ -100,7 +100,7 @@ namespace TestData
 // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_module/module_ch.cpp:62
 
 
-} // module TestData
+} // module HelloWorldData
 // TAO_IDL - Generated from
 // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_arg_traits.cpp:64
 
@@ -118,10 +118,10 @@ namespace TAO
   
 
   template<>
-  class Arg_Traits< ::TestData::Message>
+  class Arg_Traits< ::HelloWorldData::Msg>
     : public
         Var_Size_Arg_Traits_T<
-            ::TestData::Message,
+            ::HelloWorldData::Msg,
             TAO::Any_Insert_Policy_Noop
           >
   {
@@ -151,8 +151,8 @@ TAO_END_VERSIONED_NAMESPACE_DECL
 
 TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 
- ::CORBA::Boolean operator<< (TAO_OutputCDR &, const TestData::Message &);
- ::CORBA::Boolean operator>> (TAO_InputCDR &, TestData::Message &);
+ ::CORBA::Boolean operator<< (TAO_OutputCDR &, const HelloWorldData::Msg &);
+ ::CORBA::Boolean operator>> (TAO_InputCDR &, HelloWorldData::Msg &);
 
 TAO_END_VERSIONED_NAMESPACE_DECL
 

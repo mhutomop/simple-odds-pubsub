@@ -33,8 +33,9 @@ int main(int argc, char** argv) {
         std::jthread odds_thread(ThreadsContainer::odds_subscriber_thread);
 
         while(true) {
-            TestData::Message test_msg;
-            test_msg.command = "GREEN";
+            HelloWorldData::Msg test_msg;
+            test_msg.user_id = 9;
+            test_msg.message = "Hello from C++!";
             test_odds_publisher->set_test_msg_(test_msg);
             test_odds_publisher->publish_message();
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));

@@ -29,15 +29,15 @@ public:
 
     /**
     * Method to get updated data
-    * @return updated data as TestData::Message
+    * @return updated data as HelloWorldData::Msg
     */
-    TestData::Message& get_updated_data();
+    HelloWorldData::Msg& get_updated_data();
 
     void start() override;
 private:
     DDS::ReturnCode_t result_;
-    TestData::MessageSeq msg_list_;
+    HelloWorldData::MsgSeq msg_list_;
     DDS::SampleInfoSeq info_seq_;
-    TestData::MessageDataReader_var ntb2_reader_;
-    TestData::Message message_;
+    HelloWorldData::MsgDataReader_var test_reader_;
+    HelloWorldData::Msg message_;
 };

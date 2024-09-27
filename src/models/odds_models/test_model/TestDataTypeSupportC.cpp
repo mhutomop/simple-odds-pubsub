@@ -35,28 +35,28 @@
 
 TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 
-// Traits specializations for TestData::MessageTypeSupport.
+// Traits specializations for HelloWorldData::MsgTypeSupport.
 
-TestData::MessageTypeSupport_ptr
-TAO::Objref_Traits<TestData::MessageTypeSupport>::duplicate (TestData::MessageTypeSupport_ptr p)
+HelloWorldData::MsgTypeSupport_ptr
+TAO::Objref_Traits<HelloWorldData::MsgTypeSupport>::duplicate (HelloWorldData::MsgTypeSupport_ptr p)
 {
-  return TestData::MessageTypeSupport::_duplicate (p);
+  return HelloWorldData::MsgTypeSupport::_duplicate (p);
 }
 
 void
-TAO::Objref_Traits<TestData::MessageTypeSupport>::release (TestData::MessageTypeSupport_ptr p)
+TAO::Objref_Traits<HelloWorldData::MsgTypeSupport>::release (HelloWorldData::MsgTypeSupport_ptr p)
 {
   ::CORBA::release (p);
 }
 
-TestData::MessageTypeSupport_ptr
-TAO::Objref_Traits<TestData::MessageTypeSupport>::nil ()
+HelloWorldData::MsgTypeSupport_ptr
+TAO::Objref_Traits<HelloWorldData::MsgTypeSupport>::nil ()
 {
-  return TestData::MessageTypeSupport::_nil ();
+  return HelloWorldData::MsgTypeSupport::_nil ();
 }
 
 ::CORBA::Boolean
-TAO::Objref_Traits<TestData::MessageTypeSupport>::marshal (const TestData::MessageTypeSupport_ptr p,TAO_OutputCDR & cdr)
+TAO::Objref_Traits<HelloWorldData::MsgTypeSupport>::marshal (const HelloWorldData::MsgTypeSupport_ptr p,TAO_OutputCDR & cdr)
 {
   return ::CORBA::Object::marshal (p, cdr);
 }
@@ -65,29 +65,29 @@ TAO_END_VERSIONED_NAMESPACE_DECL
 
 
 
-TestData::MessageTypeSupport::MessageTypeSupport ()
-{}TestData::MessageTypeSupport_ptr
-TestData::MessageTypeSupport::_narrow (::CORBA::Object_ptr _tao_objref)
+HelloWorldData::MsgTypeSupport::MsgTypeSupport ()
+{}HelloWorldData::MsgTypeSupport_ptr
+HelloWorldData::MsgTypeSupport::_narrow (::CORBA::Object_ptr _tao_objref)
 {
-  return MessageTypeSupport::_duplicate (
-      dynamic_cast<MessageTypeSupport_ptr> (_tao_objref));
+  return MsgTypeSupport::_duplicate (
+      dynamic_cast<MsgTypeSupport_ptr> (_tao_objref));
 }
 
-TestData::MessageTypeSupport_ptr
-TestData::MessageTypeSupport::_unchecked_narrow (::CORBA::Object_ptr _tao_objref)
+HelloWorldData::MsgTypeSupport_ptr
+HelloWorldData::MsgTypeSupport::_unchecked_narrow (::CORBA::Object_ptr _tao_objref)
 {
-  return MessageTypeSupport::_duplicate (
-      dynamic_cast<MessageTypeSupport_ptr> (_tao_objref));
+  return MsgTypeSupport::_duplicate (
+      dynamic_cast<MsgTypeSupport_ptr> (_tao_objref));
 }
 
-TestData::MessageTypeSupport_ptr
-TestData::MessageTypeSupport::_nil ()
+HelloWorldData::MsgTypeSupport_ptr
+HelloWorldData::MsgTypeSupport::_nil ()
 {
   return nullptr;
 }
 
-TestData::MessageTypeSupport_ptr
-TestData::MessageTypeSupport::_duplicate (MessageTypeSupport_ptr obj)
+HelloWorldData::MsgTypeSupport_ptr
+HelloWorldData::MsgTypeSupport::_duplicate (MsgTypeSupport_ptr obj)
 {
   if (! ::CORBA::is_nil (obj))
     {
@@ -97,18 +97,18 @@ TestData::MessageTypeSupport::_duplicate (MessageTypeSupport_ptr obj)
 }
 
 void
-TestData::MessageTypeSupport::_tao_release (MessageTypeSupport_ptr obj)
+HelloWorldData::MsgTypeSupport::_tao_release (MsgTypeSupport_ptr obj)
 {
   ::CORBA::release (obj);
 }
 
 ::CORBA::Boolean
-TestData::MessageTypeSupport::_is_a (const char *value)
+HelloWorldData::MsgTypeSupport::_is_a (const char *value)
 {
   if (
       std::strcmp (value, "IDL:DDS/TypeSupport:1.0") == 0 ||
       std::strcmp (value, "IDL:OpenDDS/DCPS/TypeSupport:1.0") == 0 ||
-      std::strcmp (value, "IDL:TestData/MessageTypeSupport:1.0") == 0 ||
+      std::strcmp (value, "IDL:HelloWorldData/MsgTypeSupport:1.0") == 0 ||
       std::strcmp (value, "IDL:omg.org/CORBA/LocalObject:1.0") == 0 ||
       std::strcmp (value, "IDL:omg.org/CORBA/Object:1.0") == 0
       )
@@ -121,13 +121,13 @@ TestData::MessageTypeSupport::_is_a (const char *value)
     }
 }
 
-const char* TestData::MessageTypeSupport::_interface_repository_id () const
+const char* HelloWorldData::MsgTypeSupport::_interface_repository_id () const
 {
-  return "IDL:TestData/MessageTypeSupport:1.0";
+  return "IDL:HelloWorldData/MsgTypeSupport:1.0";
 }
 
 ::CORBA::Boolean
-TestData::MessageTypeSupport::marshal (TAO_OutputCDR & /* cdr */)
+HelloWorldData::MsgTypeSupport::marshal (TAO_OutputCDR & /* cdr */)
 {
   return false;
 }
@@ -137,28 +137,28 @@ TestData::MessageTypeSupport::marshal (TAO_OutputCDR & /* cdr */)
 
 TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 
-// Traits specializations for TestData::MessageDataWriter.
+// Traits specializations for HelloWorldData::MsgDataWriter.
 
-TestData::MessageDataWriter_ptr
-TAO::Objref_Traits<TestData::MessageDataWriter>::duplicate (TestData::MessageDataWriter_ptr p)
+HelloWorldData::MsgDataWriter_ptr
+TAO::Objref_Traits<HelloWorldData::MsgDataWriter>::duplicate (HelloWorldData::MsgDataWriter_ptr p)
 {
-  return TestData::MessageDataWriter::_duplicate (p);
+  return HelloWorldData::MsgDataWriter::_duplicate (p);
 }
 
 void
-TAO::Objref_Traits<TestData::MessageDataWriter>::release (TestData::MessageDataWriter_ptr p)
+TAO::Objref_Traits<HelloWorldData::MsgDataWriter>::release (HelloWorldData::MsgDataWriter_ptr p)
 {
   ::CORBA::release (p);
 }
 
-TestData::MessageDataWriter_ptr
-TAO::Objref_Traits<TestData::MessageDataWriter>::nil ()
+HelloWorldData::MsgDataWriter_ptr
+TAO::Objref_Traits<HelloWorldData::MsgDataWriter>::nil ()
 {
-  return TestData::MessageDataWriter::_nil ();
+  return HelloWorldData::MsgDataWriter::_nil ();
 }
 
 ::CORBA::Boolean
-TAO::Objref_Traits<TestData::MessageDataWriter>::marshal (const TestData::MessageDataWriter_ptr p,TAO_OutputCDR & cdr)
+TAO::Objref_Traits<HelloWorldData::MsgDataWriter>::marshal (const HelloWorldData::MsgDataWriter_ptr p,TAO_OutputCDR & cdr)
 {
   return ::CORBA::Object::marshal (p, cdr);
 }
@@ -167,29 +167,29 @@ TAO_END_VERSIONED_NAMESPACE_DECL
 
 
 
-TestData::MessageDataWriter::MessageDataWriter ()
-{}TestData::MessageDataWriter_ptr
-TestData::MessageDataWriter::_narrow (::CORBA::Object_ptr _tao_objref)
+HelloWorldData::MsgDataWriter::MsgDataWriter ()
+{}HelloWorldData::MsgDataWriter_ptr
+HelloWorldData::MsgDataWriter::_narrow (::CORBA::Object_ptr _tao_objref)
 {
-  return MessageDataWriter::_duplicate (
-      dynamic_cast<MessageDataWriter_ptr> (_tao_objref));
+  return MsgDataWriter::_duplicate (
+      dynamic_cast<MsgDataWriter_ptr> (_tao_objref));
 }
 
-TestData::MessageDataWriter_ptr
-TestData::MessageDataWriter::_unchecked_narrow (::CORBA::Object_ptr _tao_objref)
+HelloWorldData::MsgDataWriter_ptr
+HelloWorldData::MsgDataWriter::_unchecked_narrow (::CORBA::Object_ptr _tao_objref)
 {
-  return MessageDataWriter::_duplicate (
-      dynamic_cast<MessageDataWriter_ptr> (_tao_objref));
+  return MsgDataWriter::_duplicate (
+      dynamic_cast<MsgDataWriter_ptr> (_tao_objref));
 }
 
-TestData::MessageDataWriter_ptr
-TestData::MessageDataWriter::_nil ()
+HelloWorldData::MsgDataWriter_ptr
+HelloWorldData::MsgDataWriter::_nil ()
 {
   return nullptr;
 }
 
-TestData::MessageDataWriter_ptr
-TestData::MessageDataWriter::_duplicate (MessageDataWriter_ptr obj)
+HelloWorldData::MsgDataWriter_ptr
+HelloWorldData::MsgDataWriter::_duplicate (MsgDataWriter_ptr obj)
 {
   if (! ::CORBA::is_nil (obj))
     {
@@ -199,18 +199,18 @@ TestData::MessageDataWriter::_duplicate (MessageDataWriter_ptr obj)
 }
 
 void
-TestData::MessageDataWriter::_tao_release (MessageDataWriter_ptr obj)
+HelloWorldData::MsgDataWriter::_tao_release (MsgDataWriter_ptr obj)
 {
   ::CORBA::release (obj);
 }
 
 ::CORBA::Boolean
-TestData::MessageDataWriter::_is_a (const char *value)
+HelloWorldData::MsgDataWriter::_is_a (const char *value)
 {
   if (
       std::strcmp (value, "IDL:DDS/Entity:1.0") == 0 ||
       std::strcmp (value, "IDL:DDS/DataWriter:1.0") == 0 ||
-      std::strcmp (value, "IDL:TestData/MessageDataWriter:1.0") == 0 ||
+      std::strcmp (value, "IDL:HelloWorldData/MsgDataWriter:1.0") == 0 ||
       std::strcmp (value, "IDL:omg.org/CORBA/LocalObject:1.0") == 0 ||
       std::strcmp (value, "IDL:omg.org/CORBA/Object:1.0") == 0
       )
@@ -223,13 +223,13 @@ TestData::MessageDataWriter::_is_a (const char *value)
     }
 }
 
-const char* TestData::MessageDataWriter::_interface_repository_id () const
+const char* HelloWorldData::MsgDataWriter::_interface_repository_id () const
 {
-  return "IDL:TestData/MessageDataWriter:1.0";
+  return "IDL:HelloWorldData/MsgDataWriter:1.0";
 }
 
 ::CORBA::Boolean
-TestData::MessageDataWriter::marshal (TAO_OutputCDR & /* cdr */)
+HelloWorldData::MsgDataWriter::marshal (TAO_OutputCDR & /* cdr */)
 {
   return false;
 }
@@ -239,28 +239,28 @@ TestData::MessageDataWriter::marshal (TAO_OutputCDR & /* cdr */)
 
 TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 
-// Traits specializations for TestData::MessageDataReader.
+// Traits specializations for HelloWorldData::MsgDataReader.
 
-TestData::MessageDataReader_ptr
-TAO::Objref_Traits<TestData::MessageDataReader>::duplicate (TestData::MessageDataReader_ptr p)
+HelloWorldData::MsgDataReader_ptr
+TAO::Objref_Traits<HelloWorldData::MsgDataReader>::duplicate (HelloWorldData::MsgDataReader_ptr p)
 {
-  return TestData::MessageDataReader::_duplicate (p);
+  return HelloWorldData::MsgDataReader::_duplicate (p);
 }
 
 void
-TAO::Objref_Traits<TestData::MessageDataReader>::release (TestData::MessageDataReader_ptr p)
+TAO::Objref_Traits<HelloWorldData::MsgDataReader>::release (HelloWorldData::MsgDataReader_ptr p)
 {
   ::CORBA::release (p);
 }
 
-TestData::MessageDataReader_ptr
-TAO::Objref_Traits<TestData::MessageDataReader>::nil ()
+HelloWorldData::MsgDataReader_ptr
+TAO::Objref_Traits<HelloWorldData::MsgDataReader>::nil ()
 {
-  return TestData::MessageDataReader::_nil ();
+  return HelloWorldData::MsgDataReader::_nil ();
 }
 
 ::CORBA::Boolean
-TAO::Objref_Traits<TestData::MessageDataReader>::marshal (const TestData::MessageDataReader_ptr p,TAO_OutputCDR & cdr)
+TAO::Objref_Traits<HelloWorldData::MsgDataReader>::marshal (const HelloWorldData::MsgDataReader_ptr p,TAO_OutputCDR & cdr)
 {
   return ::CORBA::Object::marshal (p, cdr);
 }
@@ -269,29 +269,29 @@ TAO_END_VERSIONED_NAMESPACE_DECL
 
 
 
-TestData::MessageDataReader::MessageDataReader ()
-{}TestData::MessageDataReader_ptr
-TestData::MessageDataReader::_narrow (::CORBA::Object_ptr _tao_objref)
+HelloWorldData::MsgDataReader::MsgDataReader ()
+{}HelloWorldData::MsgDataReader_ptr
+HelloWorldData::MsgDataReader::_narrow (::CORBA::Object_ptr _tao_objref)
 {
-  return MessageDataReader::_duplicate (
-      dynamic_cast<MessageDataReader_ptr> (_tao_objref));
+  return MsgDataReader::_duplicate (
+      dynamic_cast<MsgDataReader_ptr> (_tao_objref));
 }
 
-TestData::MessageDataReader_ptr
-TestData::MessageDataReader::_unchecked_narrow (::CORBA::Object_ptr _tao_objref)
+HelloWorldData::MsgDataReader_ptr
+HelloWorldData::MsgDataReader::_unchecked_narrow (::CORBA::Object_ptr _tao_objref)
 {
-  return MessageDataReader::_duplicate (
-      dynamic_cast<MessageDataReader_ptr> (_tao_objref));
+  return MsgDataReader::_duplicate (
+      dynamic_cast<MsgDataReader_ptr> (_tao_objref));
 }
 
-TestData::MessageDataReader_ptr
-TestData::MessageDataReader::_nil ()
+HelloWorldData::MsgDataReader_ptr
+HelloWorldData::MsgDataReader::_nil ()
 {
   return nullptr;
 }
 
-TestData::MessageDataReader_ptr
-TestData::MessageDataReader::_duplicate (MessageDataReader_ptr obj)
+HelloWorldData::MsgDataReader_ptr
+HelloWorldData::MsgDataReader::_duplicate (MsgDataReader_ptr obj)
 {
   if (! ::CORBA::is_nil (obj))
     {
@@ -301,19 +301,19 @@ TestData::MessageDataReader::_duplicate (MessageDataReader_ptr obj)
 }
 
 void
-TestData::MessageDataReader::_tao_release (MessageDataReader_ptr obj)
+HelloWorldData::MsgDataReader::_tao_release (MsgDataReader_ptr obj)
 {
   ::CORBA::release (obj);
 }
 
 ::CORBA::Boolean
-TestData::MessageDataReader::_is_a (const char *value)
+HelloWorldData::MsgDataReader::_is_a (const char *value)
 {
   if (
       std::strcmp (value, "IDL:DDS/Entity:1.0") == 0 ||
       std::strcmp (value, "IDL:DDS/DataReader:1.0") == 0 ||
       std::strcmp (value, "IDL:OpenDDS/DCPS/DataReaderEx:1.0") == 0 ||
-      std::strcmp (value, "IDL:TestData/MessageDataReader:1.0") == 0 ||
+      std::strcmp (value, "IDL:HelloWorldData/MsgDataReader:1.0") == 0 ||
       std::strcmp (value, "IDL:omg.org/CORBA/LocalObject:1.0") == 0 ||
       std::strcmp (value, "IDL:omg.org/CORBA/Object:1.0") == 0
       )
@@ -326,13 +326,13 @@ TestData::MessageDataReader::_is_a (const char *value)
     }
 }
 
-const char* TestData::MessageDataReader::_interface_repository_id () const
+const char* HelloWorldData::MsgDataReader::_interface_repository_id () const
 {
-  return "IDL:TestData/MessageDataReader:1.0";
+  return "IDL:HelloWorldData/MsgDataReader:1.0";
 }
 
 ::CORBA::Boolean
-TestData::MessageDataReader::marshal (TAO_OutputCDR & /* cdr */)
+HelloWorldData::MsgDataReader::marshal (TAO_OutputCDR & /* cdr */)
 {
   return false;
 }

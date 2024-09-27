@@ -3,12 +3,12 @@
  * See: http://www.opendds.org/license.html
  */
 
-module TestData {
+module HelloWorldData {
 
     @topic
-    struct Message {
-        @key string command;
-        @optional unsigned short type;
+    struct Msg {
+        @key short user_id;
+        string message;
     };
 
 };

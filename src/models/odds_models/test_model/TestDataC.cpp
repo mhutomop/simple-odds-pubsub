@@ -36,20 +36,20 @@ TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 
 ::CORBA::Boolean operator<< (
     TAO_OutputCDR &strm,
-    const TestData::Message &_tao_aggregate)
+    const HelloWorldData::Msg &_tao_aggregate)
 {
   return
-    (strm << _tao_aggregate.command.in ()) &&
-    (strm << _tao_aggregate.type);
+    (strm << _tao_aggregate.user_id) &&
+    (strm << _tao_aggregate.message.in ());
 }
 
 ::CORBA::Boolean operator>> (
     TAO_InputCDR &strm,
-    TestData::Message &_tao_aggregate)
+    HelloWorldData::Msg &_tao_aggregate)
 {
   return
-    (strm >> _tao_aggregate.command.out ()) &&
-    (strm >> _tao_aggregate.type);
+    (strm >> _tao_aggregate.user_id) &&
+    (strm >> _tao_aggregate.message.out ());
 }
 
 TAO_END_VERSIONED_NAMESPACE_DECL

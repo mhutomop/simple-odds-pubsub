@@ -25,8 +25,8 @@
 // TAO_IDL - Generated from
 // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_codegen.cpp:631
 
-#ifndef _TAO_IDL_TESTDATAS_NBXEZN_CPP_
-#define _TAO_IDL_TESTDATAS_NBXEZN_CPP_
+#ifndef _TAO_IDL_TESTDATAS_VBOHFB_CPP_
+#define _TAO_IDL_TESTDATAS_VBOHFB_CPP_
 
 
 #include "TestDataS.h"

@@ -25,8 +25,8 @@
 // TAO_IDL - Generated from
 // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_codegen.cpp:148
 
-#ifndef _TAO_IDL_TESTDATATYPESUPPORTC_VBI8KZ_H_
-#define _TAO_IDL_TESTDATATYPESUPPORTC_VBI8KZ_H_
+#ifndef _TAO_IDL_TESTDATATYPESUPPORTC_NXA0BT_H_
+#define _TAO_IDL_TESTDATATYPESUPPORTC_NXA0BT_H_
 
 
 #include /**/ <ace/config-all.h>
@@ -80,7 +80,7 @@ TAO_END_VERSIONED_NAMESPACE_DECL
 // TAO_IDL - Generated from
 // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_module/module_ch.cpp:34
 
-namespace TestData
+namespace HelloWorldData
 {
 
   
@@ -89,20 +89,20 @@ namespace TestData
 
   
 
-  typedef ::TAO::DCPS::ZeroCopyDataSeq< TestData::Message, DCPS_ZERO_COPY_SEQ_DEFAULT_SIZE> MessageSeq;
+  typedef ::TAO::DCPS::ZeroCopyDataSeq< HelloWorldData::Msg, DCPS_ZERO_COPY_SEQ_DEFAULT_SIZE> MsgSeq;
   
   // TAO_IDL - Generated from
   // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_interface.cpp:742
 
   
 
-#if !defined (_TESTDATA_MESSAGETYPESUPPORT__VAR_OUT_CH_)
-#define _TESTDATA_MESSAGETYPESUPPORT__VAR_OUT_CH_
+#if !defined (_HELLOWORLDDATA_MSGTYPESUPPORT__VAR_OUT_CH_)
+#define _HELLOWORLDDATA_MSGTYPESUPPORT__VAR_OUT_CH_
 
-  class MessageTypeSupport;
-  using MessageTypeSupport_ptr = MessageTypeSupport*;
-  using MessageTypeSupport_var = TAO_Objref_Var_T<MessageTypeSupport>;
-  using MessageTypeSupport_out = TAO_Objref_Out_T<MessageTypeSupport>;
+  class MsgTypeSupport;
+  using MsgTypeSupport_ptr = MsgTypeSupport*;
+  using MsgTypeSupport_var = TAO_Objref_Var_T<MsgTypeSupport>;
+  using MsgTypeSupport_out = TAO_Objref_Out_T<MsgTypeSupport>;
 
 #endif /* end #if !defined */
 
@@ -112,7 +112,7 @@ namespace TestData
 
   
 
-  class  MessageTypeSupport
+  class  MsgTypeSupport
     : public virtual ::OpenDDS::DCPS::TypeSupport
   
   {
@@ -120,37 +120,37 @@ namespace TestData
     // TAO_IDL - Generated from
     // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_type.cpp:296
 
-    using _ptr_type = MessageTypeSupport_ptr;
-    using _var_type = MessageTypeSupport_var;
-    using _out_type = MessageTypeSupport_out;
+    using _ptr_type = MsgTypeSupport_ptr;
+    using _var_type = MsgTypeSupport_var;
+    using _out_type = MsgTypeSupport_out;
 
     // The static operations.
-    static MessageTypeSupport_ptr _duplicate (MessageTypeSupport_ptr obj);
+    static MsgTypeSupport_ptr _duplicate (MsgTypeSupport_ptr obj);
 
-    static void _tao_release (MessageTypeSupport_ptr obj);
+    static void _tao_release (MsgTypeSupport_ptr obj);
 
-    static MessageTypeSupport_ptr _narrow (::CORBA::Object_ptr obj);
-    static MessageTypeSupport_ptr _unchecked_narrow (::CORBA::Object_ptr obj);
-    static MessageTypeSupport_ptr _nil ();
+    static MsgTypeSupport_ptr _narrow (::CORBA::Object_ptr obj);
+    static MsgTypeSupport_ptr _unchecked_narrow (::CORBA::Object_ptr obj);
+    static MsgTypeSupport_ptr _nil ();
 
     virtual ::DDS::ReturnCode_t encode_to_string (
-      const ::TestData::Message & sample,
+      const ::HelloWorldData::Msg & sample,
       ::CORBA::String_out encoded,
       ::OpenDDS::DCPS::RepresentationFormat_ptr format) = 0;
 
     virtual ::DDS::ReturnCode_t encode_to_bytes (
-      const ::TestData::Message & sample,
+      const ::HelloWorldData::Msg & sample,
       ::DDS::OctetSeq_out encoded,
       ::OpenDDS::DCPS::RepresentationFormat_ptr format) = 0;
 
     virtual ::DDS::ReturnCode_t decode_from_string (
       const char * encoded,
-      ::TestData::Message_out sample,
+      ::HelloWorldData::Msg_out sample,
       ::OpenDDS::DCPS::RepresentationFormat_ptr format) = 0;
 
     virtual ::DDS::ReturnCode_t decode_from_bytes (
       const ::DDS::OctetSeq & encoded,
-      ::TestData::Message_out sample,
+      ::HelloWorldData::Msg_out sample,
       ::OpenDDS::DCPS::RepresentationFormat_ptr format) = 0;
 
     
@@ -165,31 +165,31 @@ namespace TestData
   
   protected:
     // Abstract or local interface only.
-    MessageTypeSupport ();
+    MsgTypeSupport ();
 
     
 
-    virtual ~MessageTypeSupport () = default;
+    virtual ~MsgTypeSupport () = default;
   
   private:
     // Private and unimplemented for concrete interfaces.
-    MessageTypeSupport (const MessageTypeSupport &) = delete;
-    MessageTypeSupport (MessageTypeSupport &&) = delete;
-    MessageTypeSupport &operator= (const MessageTypeSupport &) = delete;
-    MessageTypeSupport &operator= (MessageTypeSupport &&) = delete;
+    MsgTypeSupport (const MsgTypeSupport &) = delete;
+    MsgTypeSupport (MsgTypeSupport &&) = delete;
+    MsgTypeSupport &operator= (const MsgTypeSupport &) = delete;
+    MsgTypeSupport &operator= (MsgTypeSupport &&) = delete;
   };
   // TAO_IDL - Generated from
   // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_interface.cpp:742
 
   
 
-#if !defined (_TESTDATA_MESSAGEDATAWRITER__VAR_OUT_CH_)
-#define _TESTDATA_MESSAGEDATAWRITER__VAR_OUT_CH_
+#if !defined (_HELLOWORLDDATA_MSGDATAWRITER__VAR_OUT_CH_)
+#define _HELLOWORLDDATA_MSGDATAWRITER__VAR_OUT_CH_
 
-  class MessageDataWriter;
-  using MessageDataWriter_ptr = MessageDataWriter*;
-  using MessageDataWriter_var = TAO_Objref_Var_T<MessageDataWriter>;
-  using MessageDataWriter_out = TAO_Objref_Out_T<MessageDataWriter>;
+  class MsgDataWriter;
+  using MsgDataWriter_ptr = MsgDataWriter*;
+  using MsgDataWriter_var = TAO_Objref_Var_T<MsgDataWriter>;
+  using MsgDataWriter_out = TAO_Objref_Out_T<MsgDataWriter>;
 
 #endif /* end #if !defined */
 
@@ -199,7 +199,7 @@ namespace TestData
 
   
 
-  class  MessageDataWriter
+  class  MsgDataWriter
     : public virtual ::DDS::DataWriter
   
   {
@@ -207,59 +207,59 @@ namespace TestData
     // TAO_IDL - Generated from
     // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_type.cpp:296
 
-    using _ptr_type = MessageDataWriter_ptr;
-    using _var_type = MessageDataWriter_var;
-    using _out_type = MessageDataWriter_out;
+    using _ptr_type = MsgDataWriter_ptr;
+    using _var_type = MsgDataWriter_var;
+    using _out_type = MsgDataWriter_out;
 
     // The static operations.
-    static MessageDataWriter_ptr _duplicate (MessageDataWriter_ptr obj);
+    static MsgDataWriter_ptr _duplicate (MsgDataWriter_ptr obj);
 
-    static void _tao_release (MessageDataWriter_ptr obj);
+    static void _tao_release (MsgDataWriter_ptr obj);
 
-    static MessageDataWriter_ptr _narrow (::CORBA::Object_ptr obj);
-    static MessageDataWriter_ptr _unchecked_narrow (::CORBA::Object_ptr obj);
-    static MessageDataWriter_ptr _nil ();
+    static MsgDataWriter_ptr _narrow (::CORBA::Object_ptr obj);
+    static MsgDataWriter_ptr _unchecked_narrow (::CORBA::Object_ptr obj);
+    static MsgDataWriter_ptr _nil ();
 
     virtual ::DDS::InstanceHandle_t register_instance (
-      const ::TestData::Message & instance) = 0;
+      const ::HelloWorldData::Msg & instance) = 0;
 
     virtual ::DDS::InstanceHandle_t register_instance_w_timestamp (
-      const ::TestData::Message & instance,
+      const ::HelloWorldData::Msg & instance,
       const ::DDS::Time_t & timestamp) = 0;
 
     virtual ::DDS::ReturnCode_t unregister_instance (
-      const ::TestData::Message & instance,
+      const ::HelloWorldData::Msg & instance,
       ::DDS::InstanceHandle_t handle) = 0;
 
     virtual ::DDS::ReturnCode_t unregister_instance_w_timestamp (
-      const ::TestData::Message & instance,
+      const ::HelloWorldData::Msg & instance,
       ::DDS::InstanceHandle_t handle,
       const ::DDS::Time_t & timestamp) = 0;
 
     virtual ::DDS::ReturnCode_t write (
-      const ::TestData::Message & instance_data,
+      const ::HelloWorldData::Msg & instance_data,
       ::DDS::InstanceHandle_t handle) = 0;
 
     virtual ::DDS::ReturnCode_t write_w_timestamp (
-      const ::TestData::Message & instance_data,
+      const ::HelloWorldData::Msg & instance_data,
       ::DDS::InstanceHandle_t handle,
       const ::DDS::Time_t & source_timestamp) = 0;
 
     virtual ::DDS::ReturnCode_t dispose (
-      const ::TestData::Message & instance_data,
+      const ::HelloWorldData::Msg & instance_data,
       ::DDS::InstanceHandle_t instance_handle) = 0;
 
     virtual ::DDS::ReturnCode_t dispose_w_timestamp (
-      const ::TestData::Message & instance_data,
+      const ::HelloWorldData::Msg & instance_data,
       ::DDS::InstanceHandle_t instance_handle,
       const ::DDS::Time_t & source_timestamp) = 0;
 
     virtual ::DDS::ReturnCode_t get_key_value (
-      ::TestData::Message & key_holder,
+      ::HelloWorldData::Msg & key_holder,
       ::DDS::InstanceHandle_t handle) = 0;
 
     virtual ::DDS::InstanceHandle_t lookup_instance (
-      const ::TestData::Message & instance_data) = 0;
+      const ::HelloWorldData::Msg & instance_data) = 0;
 
     
     // TAO_IDL - Generated from
@@ -273,31 +273,31 @@ namespace TestData
   
   protected:
     // Abstract or local interface only.
-    MessageDataWriter ();
+    MsgDataWriter ();
 
     
 
-    virtual ~MessageDataWriter () = default;
+    virtual ~MsgDataWriter () = default;
   
   private:
     // Private and unimplemented for concrete interfaces.
-    MessageDataWriter (const MessageDataWriter &) = delete;
-    MessageDataWriter (MessageDataWriter &&) = delete;
-    MessageDataWriter &operator= (const MessageDataWriter &) = delete;
-    MessageDataWriter &operator= (MessageDataWriter &&) = delete;
+    MsgDataWriter (const MsgDataWriter &) = delete;
+    MsgDataWriter (MsgDataWriter &&) = delete;
+    MsgDataWriter &operator= (const MsgDataWriter &) = delete;
+    MsgDataWriter &operator= (MsgDataWriter &&) = delete;
   };
   // TAO_IDL - Generated from
   // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_interface.cpp:742
 
   
 
-#if !defined (_TESTDATA_MESSAGEDATAREADER__VAR_OUT_CH_)
-#define _TESTDATA_MESSAGEDATAREADER__VAR_OUT_CH_
+#if !defined (_HELLOWORLDDATA_MSGDATAREADER__VAR_OUT_CH_)
+#define _HELLOWORLDDATA_MSGDATAREADER__VAR_OUT_CH_
 
-  class MessageDataReader;
-  using MessageDataReader_ptr = MessageDataReader*;
-  using MessageDataReader_var = TAO_Objref_Var_T<MessageDataReader>;
-  using MessageDataReader_out = TAO_Objref_Out_T<MessageDataReader>;
+  class MsgDataReader;
+  using MsgDataReader_ptr = MsgDataReader*;
+  using MsgDataReader_var = TAO_Objref_Var_T<MsgDataReader>;
+  using MsgDataReader_out = TAO_Objref_Out_T<MsgDataReader>;
 
 #endif /* end #if !defined */
 
@@ -307,7 +307,7 @@ namespace TestData
 
   
 
-  class  MessageDataReader
+  class  MsgDataReader
     : public virtual ::OpenDDS::DCPS::DataReaderEx
   
   {
@@ -315,21 +315,21 @@ namespace TestData
     // TAO_IDL - Generated from
     // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_type.cpp:296
 
-    using _ptr_type = MessageDataReader_ptr;
-    using _var_type = MessageDataReader_var;
-    using _out_type = MessageDataReader_out;
+    using _ptr_type = MsgDataReader_ptr;
+    using _var_type = MsgDataReader_var;
+    using _out_type = MsgDataReader_out;
 
     // The static operations.
-    static MessageDataReader_ptr _duplicate (MessageDataReader_ptr obj);
+    static MsgDataReader_ptr _duplicate (MsgDataReader_ptr obj);
 
-    static void _tao_release (MessageDataReader_ptr obj);
+    static void _tao_release (MsgDataReader_ptr obj);
 
-    static MessageDataReader_ptr _narrow (::CORBA::Object_ptr obj);
-    static MessageDataReader_ptr _unchecked_narrow (::CORBA::Object_ptr obj);
-    static MessageDataReader_ptr _nil ();
+    static MsgDataReader_ptr _narrow (::CORBA::Object_ptr obj);
+    static MsgDataReader_ptr _unchecked_narrow (::CORBA::Object_ptr obj);
+    static MsgDataReader_ptr _nil ();
 
     virtual ::DDS::ReturnCode_t read (
-      ::TestData::MessageSeq & received_data,
+      ::HelloWorldData::MsgSeq & received_data,
       ::DDS::SampleInfoSeq & info_seq,
       ::CORBA::Long max_samples,
       ::DDS::SampleStateMask sample_states,
@@ -337,7 +337,7 @@ namespace TestData
       ::DDS::InstanceStateMask instance_states) = 0;
 
     virtual ::DDS::ReturnCode_t take (
-      ::TestData::MessageSeq & received_data,
+      ::HelloWorldData::MsgSeq & received_data,
       ::DDS::SampleInfoSeq & info_seq,
       ::CORBA::Long max_samples,
       ::DDS::SampleStateMask sample_states,
@@ -345,27 +345,27 @@ namespace TestData
       ::DDS::InstanceStateMask instance_states) = 0;
 
     virtual ::DDS::ReturnCode_t read_w_condition (
-      ::TestData::MessageSeq & data_values,
+      ::HelloWorldData::MsgSeq & data_values,
       ::DDS::SampleInfoSeq & sample_infos,
       ::CORBA::Long max_samples,
       ::DDS::ReadCondition_ptr a_condition) = 0;
 
     virtual ::DDS::ReturnCode_t take_w_condition (
-      ::TestData::MessageSeq & data_values,
+      ::HelloWorldData::MsgSeq & data_values,
       ::DDS::SampleInfoSeq & sample_infos,
       ::CORBA::Long max_samples,
       ::DDS::ReadCondition_ptr a_condition) = 0;
 
     virtual ::DDS::ReturnCode_t read_next_sample (
-      ::TestData::Message & received_data,
+      ::HelloWorldData::Msg & received_data,
       ::DDS::SampleInfo & sample_info) = 0;
 
     virtual ::DDS::ReturnCode_t take_next_sample (
-      ::TestData::Message & received_data,
+      ::HelloWorldData::Msg & received_data,
       ::DDS::SampleInfo & sample_info) = 0;
 
     virtual ::DDS::ReturnCode_t read_instance (
-      ::TestData::MessageSeq & received_data,
+      ::HelloWorldData::MsgSeq & received_data,
       ::DDS::SampleInfoSeq & info_seq,
       ::CORBA::Long max_samples,
       ::DDS::InstanceHandle_t a_handle,
@@ -374,7 +374,7 @@ namespace TestData
       ::DDS::InstanceStateMask instance_states) = 0;
 
     virtual ::DDS::ReturnCode_t take_instance (
-      ::TestData::MessageSeq & received_data,
+      ::HelloWorldData::MsgSeq & received_data,
       ::DDS::SampleInfoSeq & info_seq,
       ::CORBA::Long max_samples,
       ::DDS::InstanceHandle_t a_handle,
@@ -383,21 +383,21 @@ namespace TestData
       ::DDS::InstanceStateMask instance_states) = 0;
 
     virtual ::DDS::ReturnCode_t read_instance_w_condition (
-      ::TestData::MessageSeq & received_data,
+      ::HelloWorldData::MsgSeq & received_data,
       ::DDS::SampleInfoSeq & sample_infos,
       ::CORBA::Long max_samples,
       ::DDS::InstanceHandle_t a_handle,
       ::DDS::ReadCondition_ptr a_condition) = 0;
 
     virtual ::DDS::ReturnCode_t take_instance_w_condition (
-      ::TestData::MessageSeq & received_data,
+      ::HelloWorldData::MsgSeq & received_data,
       ::DDS::SampleInfoSeq & sample_infos,
       ::CORBA::Long max_samples,
       ::DDS::InstanceHandle_t a_handle,
       ::DDS::ReadCondition_ptr a_condition) = 0;
 
     virtual ::DDS::ReturnCode_t read_next_instance (
-      ::TestData::MessageSeq & received_data,
+      ::HelloWorldData::MsgSeq & received_data,
       ::DDS::SampleInfoSeq & info_seq,
       ::CORBA::Long max_samples,
       ::DDS::InstanceHandle_t a_handle,
@@ -406,7 +406,7 @@ namespace TestData
       ::DDS::InstanceStateMask instance_states) = 0;
 
     virtual ::DDS::ReturnCode_t take_next_instance (
-      ::TestData::MessageSeq & received_data,
+      ::HelloWorldData::MsgSeq & received_data,
       ::DDS::SampleInfoSeq & info_seq,
       ::CORBA::Long max_samples,
       ::DDS::InstanceHandle_t a_handle,
@@ -415,29 +415,29 @@ namespace TestData
       ::DDS::InstanceStateMask instance_states) = 0;
 
     virtual ::DDS::ReturnCode_t read_next_instance_w_condition (
-      ::TestData::MessageSeq & data_values,
+      ::HelloWorldData::MsgSeq & data_values,
       ::DDS::SampleInfoSeq & sample_infos,
       ::CORBA::Long max_samples,
       ::DDS::InstanceHandle_t previous_handle,
       ::DDS::ReadCondition_ptr a_condition) = 0;
 
     virtual ::DDS::ReturnCode_t take_next_instance_w_condition (
-      ::TestData::MessageSeq & data_values,
+      ::HelloWorldData::MsgSeq & data_values,
       ::DDS::SampleInfoSeq & sample_infos,
       ::CORBA::Long max_samples,
       ::DDS::InstanceHandle_t previous_handle,
       ::DDS::ReadCondition_ptr a_condition) = 0;
 
     virtual ::DDS::ReturnCode_t return_loan (
-      ::TestData::MessageSeq & received_data,
+      ::HelloWorldData::MsgSeq & received_data,
       ::DDS::SampleInfoSeq & info_seq) = 0;
 
     virtual ::DDS::ReturnCode_t get_key_value (
-      ::TestData::Message & key_holder,
+      ::HelloWorldData::Msg & key_holder,
       ::DDS::InstanceHandle_t handle) = 0;
 
     virtual ::DDS::InstanceHandle_t lookup_instance (
-      const ::TestData::Message & instance_data) = 0;
+      const ::HelloWorldData::Msg & instance_data) = 0;
 
     
     // TAO_IDL - Generated from
@@ -451,18 +451,18 @@ namespace TestData
   
   protected:
     // Abstract or local interface only.
-    MessageDataReader ();
+    MsgDataReader ();
 
     
 
-    virtual ~MessageDataReader () = default;
+    virtual ~MsgDataReader () = default;
   
   private:
     // Private and unimplemented for concrete interfaces.
-    MessageDataReader (const MessageDataReader &) = delete;
-    MessageDataReader (MessageDataReader &&) = delete;
-    MessageDataReader &operator= (const MessageDataReader &) = delete;
-    MessageDataReader &operator= (MessageDataReader &&) = delete;
+    MsgDataReader (const MsgDataReader &) = delete;
+    MsgDataReader (MsgDataReader &&) = delete;
+    MsgDataReader &operator= (const MsgDataReader &) = delete;
+    MsgDataReader &operator= (MsgDataReader &&) = delete;
   };
 
 
@@ -470,7 +470,7 @@ namespace TestData
 // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_module/module_ch.cpp:62
 
 
-} // module TestData
+} // module HelloWorldData
 // TAO_IDL - Generated from
 // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_arg_traits.cpp:64
 
@@ -498,44 +498,44 @@ TAO_BEGIN_VERSIONED_NAMESPACE_DECL
 namespace TAO
 {
 
-#if !defined (_TESTDATA_MESSAGETYPESUPPORT__TRAITS_)
-#define _TESTDATA_MESSAGETYPESUPPORT__TRAITS_
+#if !defined (_HELLOWORLDDATA_MSGTYPESUPPORT__TRAITS_)
+#define _HELLOWORLDDATA_MSGTYPESUPPORT__TRAITS_
 
   template<>
-  struct  Objref_Traits< ::TestData::MessageTypeSupport>
+  struct  Objref_Traits< ::HelloWorldData::MsgTypeSupport>
   {
-    static ::TestData::MessageTypeSupport_ptr duplicate (::TestData::MessageTypeSupport_ptr p);
-    static void release (::TestData::MessageTypeSupport_ptr p);
-    static ::TestData::MessageTypeSupport_ptr nil ();
-    static ::CORBA::Boolean marshal (const ::TestData::MessageTypeSupport_ptr p,TAO_OutputCDR & cdr);
+    static ::HelloWorldData::MsgTypeSupport_ptr duplicate (::HelloWorldData::MsgTypeSupport_ptr p);
+    static void release (::HelloWorldData::MsgTypeSupport_ptr p);
+    static ::HelloWorldData::MsgTypeSupport_ptr nil ();
+    static ::CORBA::Boolean marshal (const ::HelloWorldData::MsgTypeSupport_ptr p,TAO_OutputCDR & cdr);
   };
 
 #endif /* end #if !defined */
 
-#if !defined (_TESTDATA_MESSAGEDATAWRITER__TRAITS_)
-#define _TESTDATA_MESSAGEDATAWRITER__TRAITS_
+#if !defined (_HELLOWORLDDATA_MSGDATAWRITER__TRAITS_)
+#define _HELLOWORLDDATA_MSGDATAWRITER__TRAITS_
 
   template<>
-  struct  Objref_Traits< ::TestData::MessageDataWriter>
+  struct  Objref_Traits< ::HelloWorldData::MsgDataWriter>
   {
-    static ::TestData::MessageDataWriter_ptr duplicate (::TestData::MessageDataWriter_ptr p);
-    static void release (::TestData::MessageDataWriter_ptr p);
-    static ::TestData::MessageDataWriter_ptr nil ();
-    static ::CORBA::Boolean marshal (const ::TestData::MessageDataWriter_ptr p,TAO_OutputCDR & cdr);
+    static ::HelloWorldData::MsgDataWriter_ptr duplicate (::HelloWorldData::MsgDataWriter_ptr p);
+    static void release (::HelloWorldData::MsgDataWriter_ptr p);
+    static ::HelloWorldData::MsgDataWriter_ptr nil ();
+    static ::CORBA::Boolean marshal (const ::HelloWorldData::MsgDataWriter_ptr p,TAO_OutputCDR & cdr);
   };
 
 #endif /* end #if !defined */
 
-#if !defined (_TESTDATA_MESSAGEDATAREADER__TRAITS_)
-#define _TESTDATA_MESSAGEDATAREADER__TRAITS_
+#if !defined (_HELLOWORLDDATA_MSGDATAREADER__TRAITS_)
+#define _HELLOWORLDDATA_MSGDATAREADER__TRAITS_
 
   template<>
-  struct  Objref_Traits< ::TestData::MessageDataReader>
+  struct  Objref_Traits< ::HelloWorldData::MsgDataReader>
   {
-    static ::TestData::MessageDataReader_ptr duplicate (::TestData::MessageDataReader_ptr p);
-    static void release (::TestData::MessageDataReader_ptr p);
-    static ::TestData::MessageDataReader_ptr nil ();
-    static ::CORBA::Boolean marshal (const ::TestData::MessageDataReader_ptr p,TAO_OutputCDR & cdr);
+    static ::HelloWorldData::MsgDataReader_ptr duplicate (::HelloWorldData::MsgDataReader_ptr p);
+    static void release (::HelloWorldData::MsgDataReader_ptr p);
+    static ::HelloWorldData::MsgDataReader_ptr nil ();
+    static ::CORBA::Boolean marshal (const ::HelloWorldData::MsgDataReader_ptr p,TAO_OutputCDR & cdr);
   };
 
 #endif /* end #if !defined */

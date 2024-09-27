@@ -25,35 +25,35 @@ TestODDSSubscriber::TestODDSSubscriber(const DDS::DomainParticipant_var &partici
     DDS::DataReader_var               reader;
 
     /* The Application Own Ship Position Data TypeSupport */
-    TestData::MessageTypeSupport_var type_support;
+    HelloWorldData::MsgTypeSupport_var type_support;
 
     DDS::ReturnCode_t result;
     CORBA::String_var type_name;
 
     // Register the application data type
-    type_support = new TestData::MessageTypeSupportImpl();
+    type_support = new HelloWorldData::MsgTypeSupportImpl();
     /* Get the IDL type name and use this to register the type. */
     type_name = type_support->get_type_name();
     result = type_support->register_type(participant_, type_name);
     this->odds_operator_.check_status(result, "register_type() failed");
 
-    set_topic(type_name, std::getenv("TEST_TOPIC"), reader);
+    set_topic(type_name, std::getenv("TEST_SUB_TOPIC"), reader);
 
-    /* Cast reader to 'TestData' type specific interface. */
-    ntb2_reader_ = TestData::MessageDataReader::_narrow(reader);
-    this->odds_operator_.check_handle(ntb2_reader_, "TestDataReader::_narrow() failed");
+    /* Cast reader to 'HelloWorldData' type specific interface. */
+    test_reader_ = HelloWorldData::MsgDataReader::_narrow(reader);
+    this->odds_operator_.check_handle(test_reader_, "HelloWorldDataReader::_narrow() failed");
 }
 
-TestData::Message& TestODDSSubscriber::get_updated_data() {
+HelloWorldData::Msg& TestODDSSubscriber::get_updated_data() {
     return this->message_;
 }
 
 void TestODDSSubscriber::start() {
-    LOG_INFO("ODDS Subscriber", "[Test] Ready ...");
+    LOG_INFO("ODDS Subscriber", "[Hello World] Ready ...");
 
     while (!this->is_stop_)
     {
-        this->result_ = this->ntb2_reader_->take(this->msg_list_, this->info_seq_, DDS::LENGTH_UNLIMITED,
+        this->result_ = this->test_reader_->take(this->msg_list_, this->info_seq_, DDS::LENGTH_UNLIMITED,
                                         DDS::ANY_SAMPLE_STATE, DDS::ANY_VIEW_STATE, DDS::ANY_INSTANCE_STATE);
         this->odds_operator_.check_status(this->result_, "msgDataReader::take() failed");
 
@@ -61,17 +61,17 @@ void TestODDSSubscriber::start() {
         {
             this->sync_threads();
 
-            LOG_DEBUG("ODDS Subscriber", "[Test] Message received \n \
-                \"" + std::string(this->msg_list_[i].command) + "\" \n \
-                " + std::to_string(this->msg_list_[i].type)
+            LOG_DEBUG("ODDS Subscriber", "[Hello World] Message received \n \
+                user_id : " + std::to_string(this->msg_list_[i].user_id) + "\n \
+                message : \"" + std::string(this->msg_list_[i].message)
             );
             
             this->message_ = this->msg_list_[i];
 
             this->notify_observers();
         }
-        this->result_ = this->ntb2_reader_->return_loan(this->msg_list_, this->info_seq_);
-        this->odds_operator_.check_status(this->result_, "TestDataReader::return_loan() failed");
+        this->result_ = this->test_reader_->return_loan(this->msg_list_, this->info_seq_);
+        this->odds_operator_.check_status(this->result_, "HelloWorldDataReader::return_loan() failed");
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
     }
 }

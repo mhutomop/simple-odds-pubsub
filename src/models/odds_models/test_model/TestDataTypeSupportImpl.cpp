@@ -29,7 +29,7 @@
 #ifdef OPENDDS_IDL_FILE_SPECIFIC
 #  undef OPENDDS_IDL_FILE_SPECIFIC
 #endif
-#define OPENDDS_IDL_FILE_SPECIFIC(base, index) opendds_idl_generated_testdatatypesupportimpl_cpp_dkthjl##_##base##index
+#define OPENDDS_IDL_FILE_SPECIFIC(base, index) opendds_idl_generated_testdatatypesupportimpl_cpp_gur8eq##_##base##index
 
 
 
@@ -39,27 +39,27 @@
 /* End MODULE: CORBA */
 
 
-/* Begin MODULE: TestData */
+/* Begin MODULE: HelloWorldData */
 
 
 
-/* Begin STRUCT: Message */
+/* Begin STRUCT: Msg */
 
 OPENDDS_BEGIN_VERSIONED_NAMESPACE_DECL
 namespace OpenDDS { namespace DCPS {
 
-template<> const XTypes::TypeIdentifier& getMinimalTypeIdentifier<TestData_Message_xtag>()
+template<> const XTypes::TypeIdentifier& getMinimalTypeIdentifier<HelloWorldData_Msg_xtag>()
 {
   static XTypes::TypeIdentifier ti;
   ACE_GUARD_RETURN(ACE_Thread_Mutex, guard, TheServiceParticipant->get_static_xtypes_lock(), ti);
   if (ti.kind() == XTypes::TK_NONE) {
-    ti = XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(138, 93, 58, 186, 252, 2, 134, 114, 98, 103, 158, 211, 168, 214));
+    ti = XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(87, 120, 149, 141, 204, 88, 203, 197, 102, 9, 122, 212, 15, 213));
   }
   return ti;
 }
 
 static const XTypes::TypeMap& OPENDDS_IDL_FILE_SPECIFIC(get_minimal_type_map, 0)();
-template<> const XTypes::TypeMap& getMinimalTypeMap<TestData_Message_xtag>()
+template<> const XTypes::TypeMap& getMinimalTypeMap<HelloWorldData_Msg_xtag>()
 {
   return OPENDDS_IDL_FILE_SPECIFIC(get_minimal_type_map, 0)();
 }
@@ -70,26 +70,26 @@ OPENDDS_END_VERSIONED_NAMESPACE_DECL
 OPENDDS_BEGIN_VERSIONED_NAMESPACE_DECL
 namespace OpenDDS { namespace DCPS {
 
-bool vread(OpenDDS::DCPS::ValueReader& value_reader,  ::TestData::Message& value)
+bool vread(OpenDDS::DCPS::ValueReader& value_reader,  ::HelloWorldData::Msg& value)
 {
   ACE_UNUSED_ARG(value_reader);
   ACE_UNUSED_ARG(value);
-  static const ListMemberHelper::Pair pairs[] = {{"command",0},{"type",1},{0,0}};
+  static const ListMemberHelper::Pair pairs[] = {{"user_id",0},{"message",1},{0,0}};
   ListMemberHelper helper(pairs);
   if (!value_reader.begin_struct()) return false;
   XTypes::MemberId member_id;
   while (value_reader.begin_struct_member(member_id, helper)) {
     switch (member_id) {
     case 0: {
-      {
-        String x;
-        if (!value_reader.read_string(x)) return false;
-        value.command = x.c_str();
-      }
+      if (!value_reader.read_int16(value.user_id)) return false;
       break;
     }
     case 1: {
-      if (!value_reader.read_uint16(value.type)) return false;
+      {
+        String x;
+        if (!value_reader.read_string(x)) return false;
+        value.message = x.c_str();
+      }
       break;
     }
     }
@@ -105,16 +105,16 @@ OPENDDS_END_VERSIONED_NAMESPACE_DECL
 OPENDDS_BEGIN_VERSIONED_NAMESPACE_DECL
 namespace OpenDDS { namespace DCPS {
 
-void vwrite(OpenDDS::DCPS::ValueWriter& value_writer, const  ::TestData::Message& value)
+void vwrite(OpenDDS::DCPS::ValueWriter& value_writer, const  ::HelloWorldData::Msg& value)
 {
   ACE_UNUSED_ARG(value_writer);
   ACE_UNUSED_ARG(value);
   value_writer.begin_struct();
-  value_writer.begin_struct_member(XTypes::MemberDescriptorImpl("command", true));
-  value_writer.write_string(value.command);
+  value_writer.begin_struct_member(XTypes::MemberDescriptorImpl("user_id", true));
+  value_writer.write_int16(value.user_id);
   value_writer.end_struct_member();
-  value_writer.begin_struct_member(XTypes::MemberDescriptorImpl("type", false));
-  value_writer.write_uint16(value.type);
+  value_writer.begin_struct_member(XTypes::MemberDescriptorImpl("message", false));
+  value_writer.write_string(value.message);
   value_writer.end_struct_member();
   value_writer.end_struct();
 }
@@ -125,14 +125,14 @@ OPENDDS_END_VERSIONED_NAMESPACE_DECL
 OPENDDS_BEGIN_VERSIONED_NAMESPACE_DECL
 namespace OpenDDS { namespace DCPS {
 
-template<> void set_default( ::TestData::Message& stru)
+template<> void set_default( ::HelloWorldData::Msg& stru)
 {
   ACE_UNUSED_ARG(stru);
-  stru.command = "";
-  stru.type = 0;
+  stru.user_id = 0;
+  stru.message = "";
 }
 
-void serialized_size(const Encoding& encoding, size_t& size, const ::TestData::Message& stru)
+void serialized_size(const Encoding& encoding, size_t& size, const ::HelloWorldData::Msg& stru)
 {
   ACE_UNUSED_ARG(encoding);
   ACE_UNUSED_ARG(size);
@@ -140,12 +140,12 @@ void serialized_size(const Encoding& encoding, size_t& size, const ::TestData::M
   if (encoding.xcdr_version() == Encoding::XCDR_VERSION_2) {
     serialized_size_delimiter(encoding, size);
   }
+  primitive_serialized_size(encoding, size, stru.user_id);
   primitive_serialized_size_ulong(encoding, size);
-  size += ACE_OS::strlen(stru.command.in()) + 1;
-  primitive_serialized_size(encoding, size, stru.type);
+  size += ACE_OS::strlen(stru.message.in()) + 1;
 }
 
-bool operator<<(Serializer& strm, const ::TestData::Message& stru)
+bool operator<<(Serializer& strm, const ::HelloWorldData::Msg& stru)
 {
   ACE_UNUSED_ARG(strm);
   ACE_UNUSED_ARG(stru);
@@ -158,11 +158,11 @@ bool operator<<(Serializer& strm, const ::TestData::Message& stru)
       return false;
     }
   }
-  return (strm << stru.command.in())
-    && (strm << stru.type);
+  return (strm << stru.user_id)
+    && (strm << stru.message.in());
 }
 
-bool operator>>(Serializer& strm,  ::TestData::Message& stru)
+bool operator>>(Serializer& strm,  ::HelloWorldData::Msg& stru)
 {
   ACE_UNUSED_ARG(strm);
   ACE_UNUSED_ARG(stru);
@@ -180,17 +180,17 @@ bool operator>>(Serializer& strm,  ::TestData::Message& stru)
 
   reached_end_of_struct |= (encoding.xcdr_version() == Encoding::XCDR_VERSION_2 && strm.rpos() >= end_of_struct);
   if (reached_end_of_struct) {
-    stru.command = "";
+    stru.user_id = 0;
   } else {
-    if (!(strm >> stru.command.out())) {
+    if (!(strm >> stru.user_id)) {
       return false;
     }
   }
   reached_end_of_struct |= (encoding.xcdr_version() == Encoding::XCDR_VERSION_2 && strm.rpos() >= end_of_struct);
   if (reached_end_of_struct) {
-    stru.type = 0;
+    stru.message = "";
   } else {
-    if (!(strm >> stru.type)) {
+    if (!(strm >> stru.message.out())) {
       return false;
     }
   }
@@ -200,7 +200,7 @@ bool operator>>(Serializer& strm,  ::TestData::Message& stru)
   return true;
 }
 
-void serialized_size(const Encoding& encoding, size_t& size, const NestedKeyOnly<const ::TestData::Message>& stru)
+void serialized_size(const Encoding& encoding, size_t& size, const NestedKeyOnly<const ::HelloWorldData::Msg>& stru)
 {
   ACE_UNUSED_ARG(encoding);
   ACE_UNUSED_ARG(size);
@@ -208,11 +208,10 @@ void serialized_size(const Encoding& encoding, size_t& size, const NestedKeyOnly
   if (encoding.xcdr_version() == Encoding::XCDR_VERSION_2) {
     serialized_size_delimiter(encoding, size);
   }
-  primitive_serialized_size_ulong(encoding, size);
-  size += ACE_OS::strlen(stru.value.command.in()) + 1;
+  primitive_serialized_size(encoding, size, stru.value.user_id);
 }
 
-bool operator<<(Serializer& strm, const NestedKeyOnly<const ::TestData::Message>& stru)
+bool operator<<(Serializer& strm, const NestedKeyOnly<const ::HelloWorldData::Msg>& stru)
 {
   ACE_UNUSED_ARG(strm);
   ACE_UNUSED_ARG(stru);
@@ -225,10 +224,10 @@ bool operator<<(Serializer& strm, const NestedKeyOnly<const ::TestData::Message>
       return false;
     }
   }
-  return (strm << stru.value.command.in());
+  return (strm << stru.value.user_id);
 }
 
-bool operator>>(Serializer& strm, const NestedKeyOnly< ::TestData::Message>& stru)
+bool operator>>(Serializer& strm, const NestedKeyOnly< ::HelloWorldData::Msg>& stru)
 {
   ACE_UNUSED_ARG(strm);
   ACE_UNUSED_ARG(stru);
@@ -246,9 +245,9 @@ bool operator>>(Serializer& strm, const NestedKeyOnly< ::TestData::Message>& str
 
   reached_end_of_struct |= (encoding.xcdr_version() == Encoding::XCDR_VERSION_2 && strm.rpos() >= end_of_struct);
   if (reached_end_of_struct) {
-    stru.value.command = "";
+    stru.value.user_id = 0;
   } else {
-    if (!(strm >> stru.value.command.out())) {
+    if (!(strm >> stru.value.user_id)) {
       return false;
     }
   }
@@ -258,7 +257,7 @@ bool operator>>(Serializer& strm, const NestedKeyOnly< ::TestData::Message>& str
   return true;
 }
 
-void serialized_size(const Encoding& encoding, size_t& size, const KeyOnly<const ::TestData::Message>& stru)
+void serialized_size(const Encoding& encoding, size_t& size, const KeyOnly<const ::HelloWorldData::Msg>& stru)
 {
   ACE_UNUSED_ARG(encoding);
   ACE_UNUSED_ARG(size);
@@ -266,11 +265,10 @@ void serialized_size(const Encoding& encoding, size_t& size, const KeyOnly<const
   if (encoding.xcdr_version() == Encoding::XCDR_VERSION_2) {
     serialized_size_delimiter(encoding, size);
   }
-  primitive_serialized_size_ulong(encoding, size);
-  size += ACE_OS::strlen(stru.value.command.in()) + 1;
+  primitive_serialized_size(encoding, size, stru.value.user_id);
 }
 
-bool operator<<(Serializer& strm, const KeyOnly<const ::TestData::Message>& stru)
+bool operator<<(Serializer& strm, const KeyOnly<const ::HelloWorldData::Msg>& stru)
 {
   ACE_UNUSED_ARG(strm);
   ACE_UNUSED_ARG(stru);
@@ -283,10 +281,10 @@ bool operator<<(Serializer& strm, const KeyOnly<const ::TestData::Message>& stru
       return false;
     }
   }
-  return (strm << stru.value.command.in());
+  return (strm << stru.value.user_id);
 }
 
-bool operator>>(Serializer& strm, const KeyOnly< ::TestData::Message>& stru)
+bool operator>>(Serializer& strm, const KeyOnly< ::HelloWorldData::Msg>& stru)
 {
   ACE_UNUSED_ARG(strm);
   ACE_UNUSED_ARG(stru);
@@ -304,9 +302,9 @@ bool operator>>(Serializer& strm, const KeyOnly< ::TestData::Message>& stru)
 
   reached_end_of_struct |= (encoding.xcdr_version() == Encoding::XCDR_VERSION_2 && strm.rpos() >= end_of_struct);
   if (reached_end_of_struct) {
-    stru.value.command = "";
+    stru.value.user_id = 0;
   } else {
-    if (!(strm >> stru.value.command.out())) {
+    if (!(strm >> stru.value.user_id)) {
       return false;
     }
   }
@@ -322,10 +320,10 @@ OPENDDS_END_VERSIONED_NAMESPACE_DECL
 OPENDDS_BEGIN_VERSIONED_NAMESPACE_DECL
 namespace OpenDDS {
 namespace DCPS {
-bool DDSTraits< ::TestData::Message>::is_key(const char* field)
+bool DDSTraits< ::HelloWorldData::Msg>::is_key(const char* field)
 {
   ACE_UNUSED_ARG(field);
-  if (!ACE_OS::strcmp(field, "command")) {
+  if (!ACE_OS::strcmp(field, "user_id")) {
     return true;
   }
   return false;
@@ -335,19 +333,19 @@ bool DDSTraits< ::TestData::Message>::is_key(const char* field)
 OPENDDS_END_VERSIONED_NAMESPACE_DECL
 
 
-namespace TestData {
-::DDS::DataWriter_ptr MessageTypeSupportImpl::create_datawriter()
+namespace HelloWorldData {
+::DDS::DataWriter_ptr MsgTypeSupportImpl::create_datawriter()
 {
-  typedef OpenDDS::DCPS::DataWriterImpl_T<Message> DataWriterImplType;
+  typedef OpenDDS::DCPS::DataWriterImpl_T<Msg> DataWriterImplType;
   ::DDS::DataWriter_ptr writer_impl = ::DDS::DataWriter::_nil();
   ACE_NEW_NORETURN(writer_impl,
                    DataWriterImplType());
   return writer_impl;
 }
 
-::DDS::DataReader_ptr MessageTypeSupportImpl::create_datareader()
+::DDS::DataReader_ptr MsgTypeSupportImpl::create_datareader()
 {
-  typedef OpenDDS::DCPS::DataReaderImpl_T<Message> DataReaderImplType;
+  typedef OpenDDS::DCPS::DataReaderImpl_T<Msg> DataReaderImplType;
   ::DDS::DataReader_ptr reader_impl = ::DDS::DataReader::_nil();
   ACE_NEW_NORETURN(reader_impl,
                    DataReaderImplType());
@@ -355,10 +353,10 @@ namespace TestData {
 }
 
 #ifndef OPENDDS_NO_MULTI_TOPIC
-::DDS::DataReader_ptr MessageTypeSupportImpl::create_multitopic_datareader()
+::DDS::DataReader_ptr MsgTypeSupportImpl::create_multitopic_datareader()
 {
-  typedef OpenDDS::DCPS::DataReaderImpl_T<Message> DataReaderImplType;
-  typedef OpenDDS::DCPS::MultiTopicDataReader_T<Message, DataReaderImplType> MultiTopicDataReaderImplType;
+  typedef OpenDDS::DCPS::DataReaderImpl_T<Msg> DataReaderImplType;
+  typedef OpenDDS::DCPS::MultiTopicDataReader_T<Msg, DataReaderImplType> MultiTopicDataReaderImplType;
   ::DDS::DataReader_ptr multitopic_reader_impl = ::DDS::DataReader::_nil();
   ACE_NEW_NORETURN(multitopic_reader_impl,
                    MultiTopicDataReaderImplType());
@@ -367,39 +365,39 @@ namespace TestData {
 #endif /* !OPENDDS_NO_MULTI_TOPIC */
 
 #ifndef OPENDDS_NO_CONTENT_SUBSCRIPTION_PROFILE
-const OpenDDS::DCPS::MetaStruct& MessageTypeSupportImpl::getMetaStructForType() const
+const OpenDDS::DCPS::MetaStruct& MsgTypeSupportImpl::getMetaStructForType() const
 {
-  return OpenDDS::DCPS::getMetaStruct<Message>();
+  return OpenDDS::DCPS::getMetaStruct<Msg>();
 }
 #endif /* !OPENDDS_NO_CONTENT_SUBSCRIPTION_PROFILE */
 
 namespace {
-  OpenDDS::DCPS::TypeSupportInitializer<MessageTypeSupportImpl> ts_init_TestData_Message;
+  OpenDDS::DCPS::TypeSupportInitializer<MsgTypeSupportImpl> ts_init_HelloWorldData_Msg;
 }
 
-const OpenDDS::XTypes::TypeIdentifier& MessageTypeSupportImpl::getMinimalTypeIdentifier() const
+const OpenDDS::XTypes::TypeIdentifier& MsgTypeSupportImpl::getMinimalTypeIdentifier() const
 {
-  return OpenDDS::DCPS::getMinimalTypeIdentifier<OpenDDS::DCPS::TestData_Message_xtag>();
+  return OpenDDS::DCPS::getMinimalTypeIdentifier<OpenDDS::DCPS::HelloWorldData_Msg_xtag>();
 }
 
-const OpenDDS::XTypes::TypeMap& MessageTypeSupportImpl::getMinimalTypeMap() const
+const OpenDDS::XTypes::TypeMap& MsgTypeSupportImpl::getMinimalTypeMap() const
 {
-  return OpenDDS::DCPS::getMinimalTypeMap<OpenDDS::DCPS::TestData_Message_xtag>();
+  return OpenDDS::DCPS::getMinimalTypeMap<OpenDDS::DCPS::HelloWorldData_Msg_xtag>();
 }
 
-const OpenDDS::XTypes::TypeIdentifier& MessageTypeSupportImpl::getCompleteTypeIdentifier() const
+const OpenDDS::XTypes::TypeIdentifier& MsgTypeSupportImpl::getCompleteTypeIdentifier() const
 {
   static OpenDDS::XTypes::TypeIdentifier ti;
   return ti;
 }
 
-const OpenDDS::XTypes::TypeMap& MessageTypeSupportImpl::getCompleteTypeMap() const
+const OpenDDS::XTypes::TypeMap& MsgTypeSupportImpl::getCompleteTypeMap() const
 {
   static OpenDDS::XTypes::TypeMap tm;
   return tm;
 }
 
-::DDS::ReturnCode_t MessageTypeSupportImpl::encode_to_string(const Message& in, CORBA::String_out out, OpenDDS::DCPS::RepresentationFormat* format)
+::DDS::ReturnCode_t MsgTypeSupportImpl::encode_to_string(const Msg& in, CORBA::String_out out, OpenDDS::DCPS::RepresentationFormat* format)
 {
 #if OPENDDS_HAS_JSON_VALUE_WRITER
   OpenDDS::DCPS::JsonRepresentationFormat_var jrf = OpenDDS::DCPS::JsonRepresentationFormat::_narrow(format);
@@ -419,7 +417,7 @@ const OpenDDS::XTypes::TypeMap& MessageTypeSupportImpl::getCompleteTypeMap() con
   return ::DDS::RETCODE_UNSUPPORTED;
 }
 
-::DDS::ReturnCode_t MessageTypeSupportImpl::encode_to_bytes(const Message& in, ::DDS::OctetSeq_out out, OpenDDS::DCPS::RepresentationFormat* format)
+::DDS::ReturnCode_t MsgTypeSupportImpl::encode_to_bytes(const Msg& in, ::DDS::OctetSeq_out out, OpenDDS::DCPS::RepresentationFormat* format)
 {
 #if OPENDDS_HAS_JSON_VALUE_WRITER
   OpenDDS::DCPS::JsonRepresentationFormat_var jrf = OpenDDS::DCPS::JsonRepresentationFormat::_narrow(format);
@@ -445,9 +443,9 @@ const OpenDDS::XTypes::TypeMap& MessageTypeSupportImpl::getCompleteTypeMap() con
   return ::DDS::RETCODE_UNSUPPORTED;
 }
 
-::DDS::ReturnCode_t MessageTypeSupportImpl::decode_from_string(const char* in, Message_out out, OpenDDS::DCPS::RepresentationFormat* format)
+::DDS::ReturnCode_t MsgTypeSupportImpl::decode_from_string(const char* in, Msg_out out, OpenDDS::DCPS::RepresentationFormat* format)
 {
-  out = new Message;
+  out = new Msg;
   OpenDDS::DCPS::set_default(*out);
 #if OPENDDS_HAS_JSON_VALUE_READER
   OpenDDS::DCPS::JsonRepresentationFormat_var jrf = OpenDDS::DCPS::JsonRepresentationFormat::_narrow(format);
@@ -463,7 +461,7 @@ const OpenDDS::XTypes::TypeMap& MessageTypeSupportImpl::getCompleteTypeMap() con
   return ::DDS::RETCODE_UNSUPPORTED;
 }
 
-::DDS::ReturnCode_t MessageTypeSupportImpl::decode_from_bytes(const ::DDS::OctetSeq& in, Message_out out, OpenDDS::DCPS::RepresentationFormat* format)
+::DDS::ReturnCode_t MsgTypeSupportImpl::decode_from_bytes(const ::DDS::OctetSeq& in, Msg_out out, OpenDDS::DCPS::RepresentationFormat* format)
 {
 #if OPENDDS_HAS_JSON_VALUE_READER
   OpenDDS::DCPS::JsonRepresentationFormat_var jrf = OpenDDS::DCPS::JsonRepresentationFormat::_narrow(format);
@@ -474,11 +472,11 @@ const OpenDDS::XTypes::TypeMap& MessageTypeSupportImpl::getCompleteTypeMap() con
   ACE_UNUSED_ARG(in);
   ACE_UNUSED_ARG(format);
 #endif
-  out = new Message();
+  out = new Msg();
   return ::DDS::RETCODE_UNSUPPORTED;
 }
 
-MessageTypeSupport::_ptr_type MessageTypeSupportImpl::_narrow(CORBA::Object_ptr obj)
+MsgTypeSupport::_ptr_type MsgTypeSupportImpl::_narrow(CORBA::Object_ptr obj)
 {
   return TypeSupportType::_narrow(obj);
 }
@@ -489,8 +487,8 @@ OPENDDS_BEGIN_VERSIONED_NAMESPACE_DECL
 namespace OpenDDS { namespace DCPS {
 
 template<>
-struct MetaStructImpl< ::TestData::Message> : MetaStruct {
-  typedef  ::TestData::Message T;
+struct MetaStructImpl< ::HelloWorldData::Msg> : MetaStruct {
+  typedef  ::HelloWorldData::Msg T;
 
 #ifndef OPENDDS_NO_MULTI_TOPIC
   void* allocate() const { return new T; }
@@ -503,15 +501,15 @@ struct MetaStructImpl< ::TestData::Message> : MetaStruct {
 
   Value getValue(const void* stru, const char* field) const
   {
-    const ::TestData::Message& typed = *static_cast<const ::TestData::Message*>(stru);
+    const ::HelloWorldData::Msg& typed = *static_cast<const ::HelloWorldData::Msg*>(stru);
     ACE_UNUSED_ARG(typed);
-    if (std::strcmp(field, "command") == 0) {
-      return typed.command.in();
+    if (std::strcmp(field, "user_id") == 0) {
+      return typed.user_id;
     }
-    if (std::strcmp(field, "type") == 0) {
-      return typed.type;
+    if (std::strcmp(field, "message") == 0) {
+      return typed.message.in();
     }
-    throw std::runtime_error("Field " + OPENDDS_STRING(field) + " not found or its type is not supported (in struct ::TestData::Message)");
+    throw std::runtime_error("Field " + OPENDDS_STRING(field) + " not found or its type is not supported (in struct ::HelloWorldData::Msg)");
   }
 
   Value getValue(Serializer& strm, const char* field, const TypeSupportImpl* = 0) const
@@ -531,30 +529,30 @@ struct MetaStructImpl< ::TestData::Message> : MetaStruct {
       subfield = base_field.substr(index + 1);
       base_field = base_field.substr(0, index);
     }
-    if (base_field == "command") {
+    if (base_field == "user_id") {
+      ACE_CDR::Short val;
+      if (!(strm >> val)) {
+        throw std::runtime_error("Field 'user_id' could not be deserialized");
+      }
+      return val;
+    } else {
+      if (!strm.skip(1,  2 )) {
+        throw std::runtime_error("Field 'user_id' could not be skipped");
+      }
+    }
+    if (base_field == "message") {
       TAO::String_Manager val;
       if (!(strm >> val.out())) {
-        throw std::runtime_error("Field 'command' could not be deserialized");
+        throw std::runtime_error("Field 'message' could not be deserialized");
       }
       return val;
     } else {
       ACE_CDR::ULong len;
       if (!(strm >> len)) {
-        throw std::runtime_error("String 'command' length could not be deserialized");
+        throw std::runtime_error("String 'message' length could not be deserialized");
       }
       if (!strm.skip(len)) {
-        throw std::runtime_error("String 'command' contents could not be skipped");
-      }
-    }
-    if (base_field == "type") {
-      ACE_CDR::UShort val;
-      if (!(strm >> val)) {
-        throw std::runtime_error("Field 'type' could not be deserialized");
-      }
-      return val;
-    } else {
-      if (!strm.skip(1,  2 )) {
-        throw std::runtime_error("Field 'type' could not be skipped");
+        throw std::runtime_error("String 'message' contents could not be skipped");
       }
     }
     if (!field[0]) {
@@ -566,31 +564,31 @@ struct MetaStructImpl< ::TestData::Message> : MetaStruct {
   ComparatorBase::Ptr create_qc_comparator(const char* field, ComparatorBase::Ptr next) const
   {
     ACE_UNUSED_ARG(next);
-    if (std::strcmp(field, "command") == 0) {
-      return make_field_cmp(&T::command, next);
+    if (std::strcmp(field, "user_id") == 0) {
+      return make_field_cmp(&T::user_id, next);
     }
-    if (std::strcmp(field, "type") == 0) {
-      return make_field_cmp(&T::type, next);
+    if (std::strcmp(field, "message") == 0) {
+      return make_field_cmp(&T::message, next);
     }
-    throw std::runtime_error("Field " + OPENDDS_STRING(field) + " not found or its type is not supported (in struct ::TestData::Message)");
+    throw std::runtime_error("Field " + OPENDDS_STRING(field) + " not found or its type is not supported (in struct ::HelloWorldData::Msg)");
   }
 
 #ifndef OPENDDS_NO_MULTI_TOPIC
   const char** getFieldNames() const
   {
-    static const char* names[] = {"command", "type", 0};
+    static const char* names[] = {"user_id", "message", 0};
     return names;
   }
 
   const void* getRawField(const void* stru, const char* field) const
   {
-    if (std::strcmp(field, "command") == 0) {
-      return &static_cast<const T*>(stru)->command;
+    if (std::strcmp(field, "user_id") == 0) {
+      return &static_cast<const T*>(stru)->user_id;
     }
-    if (std::strcmp(field, "type") == 0) {
-      return &static_cast<const T*>(stru)->type;
+    if (std::strcmp(field, "message") == 0) {
+      return &static_cast<const T*>(stru)->message;
     }
-    throw std::runtime_error("Field " + OPENDDS_STRING(field) + " not found or its type is not supported (in struct ::TestData::Message)");
+    throw std::runtime_error("Field " + OPENDDS_STRING(field) + " not found or its type is not supported (in struct ::HelloWorldData::Msg)");
   }
 
   void assign(void* lhs, const char* field, const void* rhs,
@@ -601,15 +599,15 @@ struct MetaStructImpl< ::TestData::Message> : MetaStruct {
     ACE_UNUSED_ARG(rhs);
     ACE_UNUSED_ARG(rhsFieldSpec);
     ACE_UNUSED_ARG(rhsMeta);
-    if (std::strcmp(field, "command") == 0) {
-      static_cast<T*>(lhs)->command = *static_cast<const TAO::String_Manager*>(rhsMeta.getRawField(rhs, rhsFieldSpec));
+    if (std::strcmp(field, "user_id") == 0) {
+      static_cast<T*>(lhs)->user_id = *static_cast<const  ::CORBA::Short*>(rhsMeta.getRawField(rhs, rhsFieldSpec));
       return;
     }
-    if (std::strcmp(field, "type") == 0) {
-      static_cast<T*>(lhs)->type = *static_cast<const  ::CORBA::UShort*>(rhsMeta.getRawField(rhs, rhsFieldSpec));
+    if (std::strcmp(field, "message") == 0) {
+      static_cast<T*>(lhs)->message = *static_cast<const TAO::String_Manager*>(rhsMeta.getRawField(rhs, rhsFieldSpec));
       return;
     }
-    throw std::runtime_error("Field " + OPENDDS_STRING(field) + " not found or its type is not supported (in struct ::TestData::Message)");
+    throw std::runtime_error("Field " + OPENDDS_STRING(field) + " not found or its type is not supported (in struct ::HelloWorldData::Msg)");
   }
 
   bool compare(const void* lhs, const void* rhs, const char* field) const
@@ -617,29 +615,29 @@ struct MetaStructImpl< ::TestData::Message> : MetaStruct {
     ACE_UNUSED_ARG(lhs);
     ACE_UNUSED_ARG(field);
     ACE_UNUSED_ARG(rhs);
-    if (std::strcmp(field, "command") == 0) {
-      return 0 == ACE_OS::strcmp(static_cast<const T*>(lhs)->command.in(), static_cast<const T*>(rhs)->command.in());
+    if (std::strcmp(field, "user_id") == 0) {
+      return static_cast<const T*>(lhs)->user_id == static_cast<const T*>(rhs)->user_id;
     }
-    if (std::strcmp(field, "type") == 0) {
-      return static_cast<const T*>(lhs)->type == static_cast<const T*>(rhs)->type;
+    if (std::strcmp(field, "message") == 0) {
+      return 0 == ACE_OS::strcmp(static_cast<const T*>(lhs)->message.in(), static_cast<const T*>(rhs)->message.in());
     }
-    throw std::runtime_error("Field " + OPENDDS_STRING(field) + " not found or its type is not supported (in struct ::TestData::Message)");
+    throw std::runtime_error("Field " + OPENDDS_STRING(field) + " not found or its type is not supported (in struct ::HelloWorldData::Msg)");
   }
 #endif /* OPENDDS_NO_MULTI_TOPIC */
 
 };
 
 template<>
-const MetaStruct& getMetaStruct< ::TestData::Message>()
+const MetaStruct& getMetaStruct< ::HelloWorldData::Msg>()
 {
-  static MetaStructImpl< ::TestData::Message> msi;
+  static MetaStructImpl< ::HelloWorldData::Msg> msi;
   return msi;
 }
 
-bool gen_skip_over(Serializer& ser,  ::TestData::Message*)
+bool gen_skip_over(Serializer& ser,  ::HelloWorldData::Msg*)
 {
   ACE_UNUSED_ARG(ser);
-  MetaStructImpl< ::TestData::Message>().getValue(ser, "");
+  MetaStructImpl< ::HelloWorldData::Msg>().getValue(ser, "");
   return true;
 }
 
@@ -654,15 +652,15 @@ namespace OpenDDS { namespace XTypes {
 #ifndef OPENDDS_SAFETY_PROFILE
 #if OPENDDS_HAS_DYNAMIC_DATA_ADAPTER
 template <>
-class DynamicDataAdapterImpl< ::TestData::Message,  ::TestData::Message > : public DynamicDataAdapter_T< ::TestData::Message> {
+class DynamicDataAdapterImpl< ::HelloWorldData::Msg,  ::HelloWorldData::Msg > : public DynamicDataAdapter_T< ::HelloWorldData::Msg> {
 public:
-  DynamicDataAdapterImpl(DDS::DynamicType_ptr type,  ::TestData::Message& value)
-    : DynamicDataAdapter_T< ::TestData::Message>(type, value)
+  DynamicDataAdapterImpl(DDS::DynamicType_ptr type,  ::HelloWorldData::Msg& value)
+    : DynamicDataAdapter_T< ::HelloWorldData::Msg>(type, value)
   {
   }
 
-  DynamicDataAdapterImpl(DDS::DynamicType_ptr type, const  ::TestData::Message& value)
-    : DynamicDataAdapter_T< ::TestData::Message>(type, value)
+  DynamicDataAdapterImpl(DDS::DynamicType_ptr type, const  ::HelloWorldData::Msg& value)
+    : DynamicDataAdapter_T< ::HelloWorldData::Msg>(type, value)
   {
   }
 
@@ -682,10 +680,10 @@ public:
     if (ext == Sample::Full) {
       DCPS::serialized_size(enc, size, value_);
     } else if (ext == Sample::NestedKeyOnly) {
-      const NestedKeyOnly<const  ::TestData::Message> nested_key_only(value_);
+      const NestedKeyOnly<const  ::HelloWorldData::Msg> nested_key_only(value_);
       DCPS::serialized_size(enc, size, nested_key_only);
     } else {
-      KeyOnly<const  ::TestData::Message> key_only(value_);
+      KeyOnly<const  ::HelloWorldData::Msg> key_only(value_);
       DCPS::serialized_size(enc, size, key_only);
     }
     return true;
@@ -697,10 +695,10 @@ public:
     if (ext == Sample::Full) {
       return ser << value_;
     } else if (ext == Sample::NestedKeyOnly) {
-      NestedKeyOnly<const  ::TestData::Message> nested_key_only(value_);
+      NestedKeyOnly<const  ::HelloWorldData::Msg> nested_key_only(value_);
       return ser << nested_key_only;
     } else {
-      KeyOnly<const  ::TestData::Message> key_only(value_);
+      KeyOnly<const  ::HelloWorldData::Msg> key_only(value_);
       return ser << key_only;
     }
   }
@@ -711,11 +709,11 @@ protected:
     switch (id) {
     case 0:
       {
-        return get_s8_raw_value(method, dest, tk, value_.command, id);
+        return get_simple_raw_value(method, dest, tk, value_.user_id, id);
       }
     case 1:
       {
-        return get_simple_raw_value(method, dest, tk, value_.type, id);
+        return get_s8_raw_value(method, dest, tk, value_.message, id);
       }
     default:
       return invalid_id(method, id);
@@ -731,11 +729,11 @@ protected:
     switch (id) {
     case 0:
       {
-        return set_s8_raw_value(method, value_.command.inout(), id, source, tk);
+        return set_simple_raw_value(method, value_.user_id, id, source, tk);
       }
     case 1:
       {
-        return set_simple_raw_value(method, value_.type, id, source, tk);
+        return set_s8_raw_value(method, value_.message.inout(), id, source, tk);
       }
     default:
       return invalid_id(method, id);
@@ -746,11 +744,11 @@ protected:
 #endif // if OPENDDS_HAS_DYNAMIC_DATA_ADAPTER
 
 template <>
-DDS::DynamicData_ptr get_dynamic_data_adapter< ::TestData::Message,  ::TestData::Message>(DDS::DynamicType_ptr type, const  ::TestData::Message& value)
+DDS::DynamicData_ptr get_dynamic_data_adapter< ::HelloWorldData::Msg,  ::HelloWorldData::Msg>(DDS::DynamicType_ptr type, const  ::HelloWorldData::Msg& value)
 {
 #  if OPENDDS_HAS_DYNAMIC_DATA_ADAPTER
   if (type) {
-    return new DynamicDataAdapterImpl< ::TestData::Message,  ::TestData::Message>(type, value);
+    return new DynamicDataAdapterImpl< ::HelloWorldData::Msg,  ::HelloWorldData::Msg>(type, value);
   }
 #  else
   ACE_UNUSED_ARG(type);
@@ -760,11 +758,11 @@ DDS::DynamicData_ptr get_dynamic_data_adapter< ::TestData::Message,  ::TestData:
 }
 
 template <>
-DDS::DynamicData_ptr get_dynamic_data_adapter< ::TestData::Message,  ::TestData::Message>(DDS::DynamicType_ptr type,  ::TestData::Message& value)
+DDS::DynamicData_ptr get_dynamic_data_adapter< ::HelloWorldData::Msg,  ::HelloWorldData::Msg>(DDS::DynamicType_ptr type,  ::HelloWorldData::Msg& value)
 {
 #  if OPENDDS_HAS_DYNAMIC_DATA_ADAPTER
   if (type) {
-    return new DynamicDataAdapterImpl< ::TestData::Message,  ::TestData::Message>(type, value);
+    return new DynamicDataAdapterImpl< ::HelloWorldData::Msg,  ::HelloWorldData::Msg>(type, value);
   }
 #  else
   ACE_UNUSED_ARG(type);
@@ -774,11 +772,11 @@ DDS::DynamicData_ptr get_dynamic_data_adapter< ::TestData::Message,  ::TestData:
 }
 
 template <>
-const  ::TestData::Message* get_dynamic_data_adapter_value< ::TestData::Message,  ::TestData::Message>(DDS::DynamicData_ptr dd)
+const  ::HelloWorldData::Msg* get_dynamic_data_adapter_value< ::HelloWorldData::Msg,  ::HelloWorldData::Msg>(DDS::DynamicData_ptr dd)
 {
   ACE_UNUSED_ARG(dd);
 #  if OPENDDS_HAS_DYNAMIC_DATA_ADAPTER
-  typedef DynamicDataAdapterImpl< ::TestData::Message,  ::TestData::Message> Dda;
+  typedef DynamicDataAdapterImpl< ::HelloWorldData::Msg,  ::HelloWorldData::Msg> Dda;
   const Dda* const dda = dynamic_cast<Dda*>(dd);
   if (dda) {
     return &dda->wrapped();
@@ -792,16 +790,16 @@ const  ::TestData::Message* get_dynamic_data_adapter_value< ::TestData::Message,
 OPENDDS_END_VERSIONED_NAMESPACE_DECL
 
 
-/* End STRUCT: Message */
+/* End STRUCT: Msg */
 
-/* End MODULE: TestData */
+/* End MODULE: HelloWorldData */
 OPENDDS_BEGIN_VERSIONED_NAMESPACE_DECL
 namespace OpenDDS { namespace DCPS {
 
 namespace {
 XTypes::TypeObject OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 0)()
 {
-  const unsigned char to_bytes[] = { 51, 0, 0, 0, 241, 81, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 2, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 33, 0, 112, 0, 29, 204, 173, 254, 11, 0, 0, 0, 1, 0, 0, 0, 9, 0, 6, 89, 157, 204, 226  };
+  const unsigned char to_bytes[] = { 52, 0, 0, 0, 241, 81, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 36, 0, 0, 0, 2, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 33, 0, 3, 232, 112, 26, 212, 0, 12, 0, 0, 0, 1, 0, 0, 0, 1, 0, 112, 0, 120, 231, 49, 2  };
   XTypes::TypeObject to;
   if (!to_type_object(to_bytes, sizeof(to_bytes), to)) {
     throw std::runtime_error("Could not deserialize minimal Type Object 0");
@@ -812,7 +810,7 @@ XTypes::TypeObject OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 0)()
 XTypes::TypeMap OPENDDS_IDL_FILE_SPECIFIC(get_minimal_type_map_private, 0)()
 {
   XTypes::TypeMap tm;
-  tm[XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(138, 93, 58, 186, 252, 2, 134, 114, 98, 103, 158, 211, 168, 214))] = OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 0)();
+  tm[XTypes::TypeIdentifier(XTypes::EK_MINIMAL, XTypes::EquivalenceHashWrapper(87, 120, 149, 141, 204, 88, 203, 197, 102, 9, 122, 212, 15, 213))] = OPENDDS_IDL_FILE_SPECIFIC(minimal_to, 0)();
   return tm;
 }
 

@@ -25,8 +25,8 @@
 // TAO_IDL - Generated from
 // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_codegen.cpp:454
 
-#ifndef _TAO_IDL_TESTDATAS_NBXEZN_H_
-#define _TAO_IDL_TESTDATAS_NBXEZN_H_
+#ifndef _TAO_IDL_TESTDATAS_VBOHFB_H_
+#define _TAO_IDL_TESTDATAS_VBOHFB_H_
 
 
 #include "TestDataC.h"
@@ -57,10 +57,10 @@ namespace TAO
   
 
   template<>
-  class SArg_Traits< ::TestData::Message>
+  class SArg_Traits< ::HelloWorldData::Msg>
     : public
         Var_Size_SArg_Traits_T<
-            ::TestData::Message,
+            ::HelloWorldData::Msg,
             TAO::Any_Insert_Policy_Noop
           >
   {
@@ -73,7 +73,7 @@ TAO_END_VERSIONED_NAMESPACE_DECL
 // TAO_IDL - Generated from
 // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_module/module_sh.cpp:34
 
-namespace POA_TestData
+namespace POA_HelloWorldData
 {
   
 
@@ -81,7 +81,7 @@ namespace POA_TestData
 // TAO_IDL - Generated from
 // /home/mhutomop/OpenDDS-3.26.1/ACE_wrappers/TAO/TAO_IDL/be/be_visitor_module/module_sh.cpp:65
 
-} // module TestData
+} // module HelloWorldData
 
 #endif /* ifndef */
 

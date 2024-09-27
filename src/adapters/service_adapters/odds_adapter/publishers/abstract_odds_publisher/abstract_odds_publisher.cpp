@@ -81,8 +81,8 @@ void AbstractODDSPublisher::set_topic(
      * you will have to start the subscriber before the publisher
     */
     w_qos.writer_data_lifecycle.autodispose_unregistered_instances = false;
-    // w_qos.representation.value.length(1);
-    // w_qos.representation.value[0] = DDS::XCDR_DATA_REPRESENTATION;
+    w_qos.representation.value.length(1);
+    w_qos.representation.value[0] = DDS::XCDR_DATA_REPRESENTATION;
 
     writer = publisher->create_datawriter(topic, w_qos, nullptr, OpenDDS::DCPS::DEFAULT_STATUS_MASK);
     this->odds_operator_.check_handle(writer, "create_datawriter() failed");
