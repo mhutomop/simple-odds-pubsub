@@ -18,14 +18,13 @@
 */
 
 #pragma once
+#include "../../adapters/service_adapters/odds_adapter/domain_participant/domain_participant.h"
 
 class ThreadsContainer 
 {
 public:
     /**
-    * Method to run ODDS subscribers
+    * Method to run ODDS test subscriber
     */
-    static void odds_subscriber_thread();
-private:
-    static void odds_test_subscriber_thread();
+    static void odds_test_subscriber_thread(ODDSDomainParticipant* domain_participant);
 };

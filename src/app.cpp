@@ -18,19 +18,20 @@
 */
 
 #include "threads/threads_container/threads_container.h"
+#include "adapters/service_adapters/odds_adapter/domain_participant/domain_participant.h"
+#include "adapters/service_adapters/odds_adapter/publishers/test_odds_publisher/test_odds_publisher.h"
 #include "utils/log_util/log_util.h"
-#include "globals/globals.h"
 
 int main(int argc, char** argv) {
     try {
         // Create a domain participant
-        domain_participant = std::make_unique<ODDSDomainParticipant>().release();
-        
-        // Create ODDS publishers
-        test_odds_publisher = std::make_unique<TestODDSPublisher>(domain_participant->get_participant_()).release();
+        ODDSDomainParticipant* domain_participant = ODDSDomainParticipant::get_instance().get();
 
-        // Create a thread to run ODDS subscribers
-        std::jthread odds_thread(ThreadsContainer::odds_subscriber_thread);
+        // Create ODDS publishers
+        auto test_odds_publisher = std::make_unique<TestODDSPublisher>(domain_participant->get_participant_()).release();
+
+        // Create a thread to run ODDS test subscriber
+        std::thread odds_test_subscriber_thread(ThreadsContainer::odds_test_subscriber_thread, domain_participant);
 
         while(true) {
             HelloWorldData::Msg test_msg;
@@ -40,6 +41,8 @@ int main(int argc, char** argv) {
             test_odds_publisher->publish_message();
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
+
+        odds_test_subscriber_thread.join();
     }
     catch (const std::exception &err) {
         LOG_ERROR("Main Method", err.what());

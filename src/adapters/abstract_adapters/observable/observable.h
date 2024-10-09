@@ -45,5 +45,5 @@ public:
     void sync_threads();
 private:
     std::list<Observer*> observers_;
-    std::list<std::jthread> threads_;
+    std::list<std::thread> threads_;
 };
