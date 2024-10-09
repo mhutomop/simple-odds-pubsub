@@ -10,21 +10,20 @@
 
 /*
  =================================================================================================================
- Name        : abstract_receiver.h
+ Name        : interface_receiver.h
  Author      : Muhammad Hutomo Padmanaba
- Version     : 1.0.0 21/05/2024
- Description : Abstract for receiver
+ Version     : 1.0.0 09/10/2024
+ Description : Interface for receiver
  =================================================================================================================
 */
 
 #pragma once
 #include "../observable/observable.h"
 
-class AbstractReceiver : public Observable
+class InterfaceReceiver : public Observable
 {
 public:
-    AbstractReceiver();
-    virtual ~AbstractReceiver() = default;
+    virtual ~InterfaceReceiver() = default;
 
     /**
     * Interface method to start receiver

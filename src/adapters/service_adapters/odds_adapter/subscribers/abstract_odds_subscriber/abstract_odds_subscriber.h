@@ -12,48 +12,49 @@
  =================================================================================================================
  Name        : abstract_odds_subscriber.h
  Author      : Muhammad Hutomo Padmanaba
- Version     : 1.0.1 07/05/2024
+ Version     : 1.0.0 09/10/2024
  Description : Abstract for OpenDDS subscriber
  =================================================================================================================
 */
 
 #pragma once
-#include <string>
 #include <dds/DCPS/Marked_Default_Qos.h>
 #include <dds/DCPS/Service_Participant.h>
 #include <dds/DCPS/StaticIncludes.h>
 #include <dds/DCPS/WaitSet.h>
-
-#if OPENDDS_DO_MANUAL_STATIC_INCLUDES
-#include <dds/DCPS/RTPS/RtpsDiscovery.h>
-#include <dds/DCPS/transport/rtps_udp/RtpsUdp.h>
-#endif
-
 #include <dds/DdsDcpsInfrastructureC.h>
 #include <dds/DdsDcpsPublicationC.h>
-
-#include "../../../../abstract_adapters/abstract_receiver/abstract_receiver.h"
+#include "../../../../abstract_adapters/interface_receiver/interface_receiver.h"
 #include "../../odds_operator/odds_operator.h"
 
-class AbstractODDSSubscriber : public AbstractReceiver
+class AbstractODDSSubscriber : public InterfaceReceiver
 {
 public:
     explicit AbstractODDSSubscriber(const DDS::DomainParticipant_var &participant);
 
+    /**
+    * Method to get Domain Participant
+    * @return Domain Participant as pointer DDS::DomainParticipant_var
+    */
+    DDS::DomainParticipant_var* get_participant_();
+    /**
+    * Method to get ODDS Operator
+    * @return ODDS Operator as pointer ODDSOperator
+    */
+    ODDSOperator* get_odds_operator_();
+    /**
+    * Method to get stop subscriber status
+    * @return stop subscriber status as boolean
+    */
+    bool* get_is_stop_();    
+
     void stop() override;
 protected:
-    DDS::DomainParticipant_var participant_;
-    DDS::TopicQos t_qos_;
-    DDS::SubscriberQos s_qos_;
-    
-    bool is_stop_ = false;
-    ODDSOperator odds_operator_;
-
     /**
-    * Method set topic
-    * @param type_name type name
-    * @param odds_topic topic to be set
-    * @param reader reader to be set
+    * Method to set topic on ODDS
+    * @param type_name type name as CORBA::String_var
+    * @param odds_topic topic to be set as pointer char
+    * @param reader reader to be set as DDS::DataReader_var
     */
     void set_topic
     (
@@ -61,4 +62,13 @@ protected:
         const char* odds_topic,
         DDS::DataReader_var &reader
     ) const;
+private:
+    DDS::DomainParticipant_var participant_;
+    DDS::Subscriber_var subscriber_;
+    DDS::TopicQos t_qos_;
+    DDS::SubscriberQos s_qos_;
+    DDS::DataReaderQos r_qos_;
+    
+    bool is_stop_ = false;
+    ODDSOperator odds_operator_;
 };

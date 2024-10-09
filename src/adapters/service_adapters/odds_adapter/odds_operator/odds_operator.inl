@@ -10,13 +10,24 @@
 
 /*
  =================================================================================================================
- Name        : abstract_receiver.cpp
+ Name        : odds_operator.cpp
  Author      : Muhammad Hutomo Padmanaba
- Version     : 1.0.0 21/05/2024
- Description : Abstract for receiver
+ Version     : 1.0.0 09/10/2024
+ Description : Operator of OpenDDS (template definition)
  =================================================================================================================
 */
 
-#include "abstract_receiver.h"
+#include "odds_operator.h"
+#include <string>
+#include "../../../../utils/log_util/log_util.h"
 
-AbstractReceiver::AbstractReceiver() = default;
+template<class T>
+void ODDSOperator::check_handle
+(
+    T* handle,
+    std::string_view info
+) const
+{
+    if (!handle)
+        LOG_ERROR("ODDS", "Error in " + static_cast<std::string>(info) + ": Creation failed: invalid handle");
+}

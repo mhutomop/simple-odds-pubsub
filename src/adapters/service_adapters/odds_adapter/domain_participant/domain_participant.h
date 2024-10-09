@@ -12,39 +12,40 @@
  =================================================================================================================
  Name        : domain_participant.h
  Author      : Muhammad Hutomo Padmanaba
- Version     : 1.0.0 21/05/2024
+ Version     : 1.0.0 09/10/2024
  Description : Domain Participant of OpenDDS
  =================================================================================================================
 */
 
 #pragma once
-#include <string>
+#include <mutex>
 #include <dds/DCPS/Marked_Default_Qos.h>
 #include <dds/DCPS/Service_Participant.h>
 #include <dds/DCPS/StaticIncludes.h>
 #include <dds/DCPS/WaitSet.h>
-
-#if OPENDDS_DO_MANUAL_STATIC_INCLUDES
-#include <dds/DCPS/RTPS/RtpsDiscovery.h>
-#include <dds/DCPS/transport/rtps_udp/RtpsUdp.h>
-#endif
-
 #include <dds/DdsDcpsInfrastructureC.h>
 #include <dds/DdsDcpsPublicationC.h>
-
 #include "../odds_operator/odds_operator.h"
 
 class ODDSDomainParticipant
 {
 public:
     ODDSDomainParticipant();
-    
+
     /**
-    * Method to get participant_
-    * @return participant_ as Domain Participant
+    * Method to get Domain Participant instance
+    * @return Domain Participant as std::shared_ptr<ODDSDomainParticipant>
+    */
+    static std::shared_ptr<ODDSDomainParticipant> get_instance();
+    /**
+    * Method to get Domain Participant
+    * @return Domain Participant as DDS::DomainParticipant_var
     */
     DDS::DomainParticipant_var& get_participant_();
 private:
+    static inline std::shared_ptr<ODDSDomainParticipant> domain_participant_instance_ = nullptr;
+    static inline std::mutex domain_participant_mutex_;  
+
     DDS::DomainParticipant_var participant_;
 
     ODDSOperator odds_operator_;

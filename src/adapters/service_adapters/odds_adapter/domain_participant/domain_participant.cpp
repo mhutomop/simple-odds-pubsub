@@ -12,37 +12,52 @@
  =================================================================================================================
  Name        : domain_participant.cpp
  Author      : Muhammad Hutomo Padmanaba
- Version     : 1.0.0 21/05/2024
+ Version     : 1.0.0 09/10/2024
  Description : Domain Participant of OpenDDS
  =================================================================================================================
 */
 
 #include "domain_participant.h"
-#include <iostream>
 #include <string>
+#include "../odds_operator/odds_operator.inl"
 #include "../../../../globals/constants.h"
+
+template void ODDSOperator::check_handle<DDS::DomainParticipantFactory_var>
+    (DDS::DomainParticipantFactory_var* handle, std::string_view info) const;
+template void ODDSOperator::check_handle<DDS::DomainParticipant_var>
+    (DDS::DomainParticipant_var* handle, std::string_view info) const;
 
 ODDSDomainParticipant::ODDSDomainParticipant() 
 {
-    /* The DDS entities required to publish data */
-    DDS::DomainParticipantFactory_var factory;
-    DDS::DomainId_t                   domain;
+    if (!domain_participant_instance_) {
+        // The DDS entities required to publish data
+        DDS::DomainParticipantFactory_var factory;
+        DDS::DomainId_t domain;
 
-    // Get the DDS DomainParticipantFactory
-    int argc = 5;
-    char* arg1 = strdup(std::string("./" + std::string(kServiceName)).c_str());
-    char* arg2 = strdup("-DCPSInfoRepo");
-    char* arg3 = strdup(std::getenv("IOR_PATH"));
-    char* arg4 = strdup("-DCPSConfigFile");
-    char* arg5 = strdup(std::getenv("RTPS_PATH"));
-    std::array<ACE_TCHAR*, 6> args = { arg1, arg2, arg3, arg4, arg5, NULL };
-    factory = TheParticipantFactoryWithArgs(argc, args.data());
-    this->odds_operator_.check_handle(factory, "get_instance() failed");
+        // Get the DDS DomainParticipantFactory
+        int32_t argc = 5;
+        char* arg1 = strdup(("./" + static_cast<std::string>(kServiceName)).c_str());
+        char* arg2 = strdup("-DCPSInfoRepo");
+        char* arg3 = strdup(std::getenv("IOR_PATH"));
+        char* arg4 = strdup("-DCPSConfigFile");
+        char* arg5 = strdup(std::getenv("RTPS_PATH"));
+        std::array<ACE_TCHAR*, 6> args = { arg1, arg2, arg3, arg4, arg5, NULL };
+        factory = TheParticipantFactoryWithArgs(argc, args.data());
+        odds_operator_.check_handle(&factory, "get_instance() failed");
 
-    // Create a domain participant entity for the Default Domain (Domain Id = 0)
-    domain = 0;
-    participant_ = factory->create_participant(domain, PARTICIPANT_QOS_DEFAULT, nullptr, OpenDDS::DCPS::DEFAULT_STATUS_MASK);
-    this->odds_operator_.check_handle(participant_, "create_participant() failed");
+        // Create a Domain Participant entity for the default domain (domain id = 0)
+        domain = 0;
+        participant_ =
+            factory->create_participant(domain, PARTICIPANT_QOS_DEFAULT, nullptr, OpenDDS::DCPS::DEFAULT_STATUS_MASK);
+        odds_operator_.check_handle(&participant_, "create_participant() failed");
+    }
+}
+
+std::shared_ptr<ODDSDomainParticipant> ODDSDomainParticipant::get_instance() {
+    if (!domain_participant_instance_)
+        domain_participant_instance_ = std::make_shared<ODDSDomainParticipant>();
+
+    return domain_participant_instance_;
 }
 
 DDS::DomainParticipant_var& ODDSDomainParticipant::get_participant_() {

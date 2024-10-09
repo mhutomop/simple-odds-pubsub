@@ -12,26 +12,18 @@
  =================================================================================================================
  Name        : abstract_odds_publisher.h
  Author      : Muhammad Hutomo Padmanaba
- Version     : 1.0.0 21/05/2024
+ Version     : 1.0.0 09/10/2024
  Description : Abstract for OpenDDS publisher
  =================================================================================================================
 */
 
 #pragma once
-#include <string>
 #include <dds/DCPS/Marked_Default_Qos.h>
 #include <dds/DCPS/Service_Participant.h>
 #include <dds/DCPS/StaticIncludes.h>
 #include <dds/DCPS/WaitSet.h>
-
-#if OPENDDS_DO_MANUAL_STATIC_INCLUDES
-#include <dds/DCPS/RTPS/RtpsDiscovery.h>
-#include <dds/DCPS/transport/rtps_udp/RtpsUdp.h>
-#endif
-
 #include <dds/DdsDcpsInfrastructureC.h>
 #include <dds/DdsDcpsPublicationC.h>
-
 #include "../../odds_operator/odds_operator.h"
 
 class AbstractODDSPublisher
@@ -41,21 +33,26 @@ public:
     virtual ~AbstractODDSPublisher() = default;
 
     /**
-    * Interface method to publish message of the topic 
+    * Method to get Domain Participant
+    * @return Domain Participant as pointer DDS::DomainParticipant_var
+    */
+    DDS::DomainParticipant_var* get_participant_();
+    /**
+    * Method to get ODDS Operator
+    * @return ODDS Operator as pointer ODDSOperator
+    */
+    ODDSOperator* get_odds_operator_();
+
+    /**
+    * Interface method to publish message of the topic
     */
     virtual void publish_message() = 0;
 protected:
-    DDS::DomainParticipant_var participant_;
-    DDS::TopicQos t_qos_;
-    DDS::PublisherQos p_qos_;
-
-    ODDSOperator odds_operator_;
-    
     /**
-    * Method set topic
-    * @param type_name type name
-    * @param odds_topic topic to be set
-    * @param writer writer to be set
+    * Method set topic on ODDS
+    * @param type_name type name as CORBA::String_var
+    * @param odds_topic topic to be set as pointer char
+    * @param writer writer to be set as DDS::DataWriter_var
     */
     void set_topic
     (
@@ -63,4 +60,12 @@ protected:
         const char* odds_topic,
         DDS::DataWriter_var &writer
     );
+private:
+    DDS::DomainParticipant_var participant_;
+    DDS::Publisher_var publisher_;
+    DDS::TopicQos t_qos_;
+    DDS::PublisherQos p_qos_;
+    DDS::DataWriterQos w_qos_;
+
+    ODDSOperator odds_operator_;
 };

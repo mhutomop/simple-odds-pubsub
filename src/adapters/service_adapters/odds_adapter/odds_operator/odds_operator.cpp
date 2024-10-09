@@ -12,28 +12,21 @@
  =================================================================================================================
  Name        : odds_operator.cpp
  Author      : Muhammad Hutomo Padmanaba
- Version     : 1.0.0 21/05/2024
+ Version     : 1.0.0 09/10/2024
  Description : Operator of OpenDDS
  =================================================================================================================
 */
 
 #include "odds_operator.h"
-#include <iostream>
 #include <string>
-#include "../../../../utils/log_util/logger.h"
+#include "../../../../utils/log_util/log_util.h"
 
-ODDSOperator::ODDSOperator() = default;
-
-void ODDSOperator::check_status(DDS::ReturnCode_t status, const char* info) const
+void ODDSOperator::check_status
+(
+    const DDS::ReturnCode_t &status,
+    const char* info
+) const
 {
-    if (status != DDS::RETCODE_OK && status != DDS::RETCODE_NO_DATA) {
+    if (status != DDS::RETCODE_OK && status != DDS::RETCODE_NO_DATA)
         LOG_ERROR("ODDS", "Error in " + std::string(info) + "with return code : " + this->ret_code_name_[status]);
-    }
-}
-
-void ODDSOperator::check_handle(const void* handle, const std::string &info) const
-{
-    if (!handle) {
-        LOG_ERROR("ODDS", "Error in " + info + ": Creation failed: invalid handle");
-    }
 }

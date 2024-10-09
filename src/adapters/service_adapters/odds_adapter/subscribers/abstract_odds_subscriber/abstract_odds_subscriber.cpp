@@ -12,36 +12,65 @@
  =================================================================================================================
  Name        : abstract_odds_subscriber.cpp
  Author      : Muhammad Hutomo Padmanaba
- Version     : 1.0.1 07/05/2024
+ Version     : 1.0.0 09/10/2024
  Description : Abstract for OpenDDS subscriber
  =================================================================================================================
 */
 
 #include "abstract_odds_subscriber.h"
-#include <rapidjson/document.h>
-#include <rapidjson/stringbuffer.h>
-#include <rapidjson/writer.h>
-#include "../../../../../globals/globals.h"
+#include "../../odds_operator/odds_operator.inl"
 
-AbstractODDSSubscriber::AbstractODDSSubscriber(const DDS::DomainParticipant_var &participant) : participant_(participant) {
-    /* The DDS entities required to subscribe data */
+template void ODDSOperator::check_handle<DDS::Topic_var>(DDS::Topic_var* handle, std::string_view info) const;
+template void ODDSOperator::check_handle<DDS::Publisher_var>(DDS::Publisher_var* handle, std::string_view info) const;
+template void ODDSOperator::check_handle<DDS::DataWriter_var>(DDS::DataWriter_var* handle, std::string_view info) const;
+
+AbstractODDSSubscriber::AbstractODDSSubscriber(const DDS::DomainParticipant_var &participant) 
+    : participant_(participant) 
+{
+    // The DDS entities required to subscribe data
     DDS::ReturnCode_t result;
 
     DDS::SampleInfoSeq info_seq;
 
-    // Create Topic entity
-    /* Create and initialize topic qos value on heap. */
+    /* Create topic QOS
+     * Create and initialize topic QOS value on heap
+    */
     result = participant_->get_default_topic_qos(t_qos_);
-    this->odds_operator_.check_status(result, "get_default_topic_qos() failed");
+    odds_operator_.check_status(result, "get_default_topic_qos() failed");
 
-    /* Fine tune topic qos, i.e. make topic reliable and transient (for late joining subscribers) */
+    // Fine tune topic QOS, i.e. make topic reliable and transient (for late joining subscribers)
     t_qos_.reliability.kind = DDS::RELIABLE_RELIABILITY_QOS;
     t_qos_.durability.kind = DDS::TRANSIENT_DURABILITY_QOS;
 
-    // Create Subscriber entity
-    /* Create on heap and initialize subscriber qos value with the default value. */
+    /* Create subscriber entity
+     * Create on heap and initialize subscriber QOS value with the default value
+    */
     result = participant_->get_default_subscriber_qos(s_qos_);
-    this->odds_operator_.check_status(result, "get_default_subscriber_qos() failed");
+    odds_operator_.check_status(result, "get_default_subscriber_qos() failed");
+
+    /* Fine tune the partition qos policy ito the partition from which the data will be received. */
+    /* Create the subscriber. */
+    subscriber_ = participant_->create_subscriber(this->s_qos_, nullptr, OpenDDS::DCPS::DEFAULT_STATUS_MASK);
+    this->odds_operator_.check_handle(&subscriber_, "create_subscriber() failed");
+
+    // create DataReader entity
+    result = subscriber_->get_default_datareader_qos(r_qos_);
+    this->odds_operator_.check_status(result, "get_default_datareader_qos() failed");
+
+    result = subscriber_->copy_from_topic_qos(r_qos_, t_qos_);
+    this->odds_operator_.check_status(result, "copy_from_topic_qos() failed");
+}
+
+DDS::DomainParticipant_var* AbstractODDSSubscriber::get_participant_() {
+    return &this->participant_;
+}
+
+ODDSOperator* AbstractODDSSubscriber::get_odds_operator_() {
+    return &this->odds_operator_;
+}
+
+bool* AbstractODDSSubscriber::get_is_stop_() {
+    return &this->is_stop_;
 }
 
 void AbstractODDSSubscriber::stop() {
@@ -57,30 +86,11 @@ void AbstractODDSSubscriber::set_topic
 {
     /* The DDS entities required to subcribe data */
     DDS::Topic_var                    topic;
-    DDS::Subscriber_var               subscriber;
-
-    DDS::ReturnCode_t result;
 
     /* Use the changed policy when defining the topic */
     topic = participant_->create_topic(odds_topic, type_name, this->t_qos_, nullptr, OpenDDS::DCPS::DEFAULT_STATUS_MASK);
-    this->odds_operator_.check_handle(topic, "create_topic() failed");
+    this->odds_operator_.check_handle(&topic, "create_topic() failed");
 
-    /* Fine tune the partition qos policy ito the partition from which the data will be received. */
-    /* Create the subscriber. */
-    subscriber = participant_->create_subscriber(this->s_qos_, nullptr, OpenDDS::DCPS::DEFAULT_STATUS_MASK);
-    this->odds_operator_.check_handle(subscriber, "create_subscriber() failed");
-
-    // create DataReader entity
-    DDS::DataReaderQos r_qos;
-    result = subscriber->get_default_datareader_qos(r_qos);
-    this->odds_operator_.check_status(result, "get_default_datareader_qos() failed");
-
-    result = subscriber->get_default_datareader_qos(r_qos);
-    this->odds_operator_.check_status(result, "copy_from_topic_qos() failed");
-
-    // r_qos.representation.value.length(1);
-    // r_qos.representation.value[0] = DDS::XCDR_DATA_REPRESENTATION;
-
-    reader = subscriber->create_datareader(topic, r_qos, nullptr, OpenDDS::DCPS::DEFAULT_STATUS_MASK);
-    this->odds_operator_.check_handle(reader, "create_datareader() failed");
+    reader = subscriber_->create_datareader(topic, r_qos_, nullptr, OpenDDS::DCPS::DEFAULT_STATUS_MASK);
+    this->odds_operator_.check_handle(&reader, "create_datareader() failed");
 }

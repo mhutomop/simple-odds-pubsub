@@ -18,7 +18,7 @@
 */
 
 #include "threads/threads_container/threads_container.h"
-#include "utils/log_util/logger.h"
+#include "utils/log_util/log_util.h"
 #include "globals/globals.h"
 
 int main(int argc, char** argv) {
