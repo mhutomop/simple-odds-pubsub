@@ -86,6 +86,10 @@ void AbstractODDSPublisher::set_topic
     */
     this->w_qos_.writer_data_lifecycle.autodispose_unregistered_instances = false;
 
+    this->w_qos_.writer_data_lifecycle.autodispose_unregistered_instances = false;
+    this->w_qos_.representation.value.length(1);
+    this->w_qos_.representation.value[0] = DDS::XCDR_DATA_REPRESENTATION;
+
     writer = this->publisher_->create_datawriter(topic, this->w_qos_, nullptr, OpenDDS::DCPS::DEFAULT_STATUS_MASK);
     this->odds_operator_.check_handle(&writer, "create_datawriter() failed");
 }
